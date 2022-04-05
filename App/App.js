@@ -1,14 +1,24 @@
 import React, {useEffect} from 'react';
 import Geolocation from 'react-native-geolocation-service';
-import {SafeAreaView, StyleSheet, Text} from 'react-native';
-import {Home} from './screens/home/Home';
+import {StyleSheet, Text} from 'react-native';
+import {Home} from './screens/home/HomeScreen';
 import {ApolloProvider} from '@apollo/client';
 import {client} from './apollo/client';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import BottomTab from './navigation/BottomTab';
+import MainStack from './navigation/MainStack';
+
+const StackApp = createStackNavigator();
 
 function App() {
   return (
     <ApolloProvider client={client}>
-      <Home />
+      <NavigationContainer>
+        <StackApp.Navigator presentation="modal">
+          <StackApp.Screen name="HomeApp" component={MainStack} />
+        </StackApp.Navigator>
+      </NavigationContainer>
     </ApolloProvider>
   );
 }

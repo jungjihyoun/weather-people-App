@@ -1,7 +1,13 @@
-import {ApolloClient, createHttpLink, InMemoryCache} from '@apollo/client';
+import {
+  ApolloClient,
+  createHttpLink,
+  InMemoryCache,
+  makeVar,
+} from '@apollo/client';
+import {graphQL_URL} from '@env';
 
 const httpLink = createHttpLink({
-  uri: process.env.graphQL_URL,
+  uri: graphQL_URL,
 });
 
 export const client = new ApolloClient({
@@ -12,5 +18,11 @@ export const client = new ApolloClient({
     watchQuery: {
       fetchPolicy: 'cache-and-network',
     },
+  },
+  onError: ({networkError, graphQLErrors}) => {
+    if (graphQLErrors) {
+      console.log('graphQLErrors', graphQLErrors[0]);
+    }
+    console.log('networkError', networkError);
   },
 });

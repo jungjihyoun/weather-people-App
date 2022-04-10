@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {gql, useQuery, useMutation, useReactiveVar} from '@apollo/client';
 import {LOCATION_API} from '../../utils/api/location';
+import {DUST_API} from '../../utils/api/weather';
 import {GET_USER} from '../../graphql/USER';
 import * as userStore from '../../store/user';
 
@@ -19,12 +20,18 @@ export const HomeScreen = () => {
     console.log(data, '테스트');
   };
 
+  const fetchDust = async sidoName => {
+    const data = await DUST_API(sidoName);
+    console.log(data, '미세먼지 테스트');
+  };
+
   return (
     <>
       <TouchableOpacity
         style={styles.container}
         onPress={() => {
-          fetchLocal();
+          // fetchLocal();
+          fetchDust('서울');
         }}>
         <Text>test !!</Text>
       </TouchableOpacity>

@@ -5,12 +5,10 @@ import BottomTabNavigator from './BottomTab';
 const Stack = createStackNavigator();
 
 function MainStack() {
+  const screenOption = {headerShown: false};
+
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      presentation="card">
+    <Stack.Navigator screenOptions={screenOption} presentation="card">
       <Stack.Screen name="Tab" component={BottomTabNavigator} />
     </Stack.Navigator>
   );

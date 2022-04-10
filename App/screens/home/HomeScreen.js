@@ -13,11 +13,10 @@ export const HomeScreen = () => {
   const {loading, error, data} = useQuery(GET_USER);
 
   const user = data?.allUser.length !== 0 ? data?.allUser : 'null';
-  console.log(user, 'query');
-  console.log($userStore, '전역상태관리');
 
   const fetchLocal = async () => {
     const data = await LOCATION_API('사당동');
+    console.log(data, '테스트');
   };
 
   return (

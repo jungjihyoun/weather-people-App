@@ -10,12 +10,13 @@ import BottomTab from './navigation/BottomTab';
 import MainStack from './navigation/MainStack';
 
 const StackApp = createStackNavigator();
+const screenOption = {headerShown: false};
 
 function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <StackApp.Navigator presentation="modal">
+        <StackApp.Navigator screenOptions={screenOption} presentation="modal">
           <StackApp.Screen name="HomeApp" component={MainStack} />
         </StackApp.Navigator>
       </NavigationContainer>

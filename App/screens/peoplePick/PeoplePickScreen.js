@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-export const WeatherPeopleScreen = () => {
+export const PeoplePickScreen = () => {
   return (
     <>
-      <Text>WeatherPeople</Text>
+      <Text>peoplePickScreen</Text>
     </>
   );
 };

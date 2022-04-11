@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import {StyleSheet, Text} from 'react-native';
 import {Home} from './screens/home/HomeScreen';
@@ -6,18 +6,31 @@ import {ApolloProvider} from '@apollo/client';
 import {client} from './apollo/client';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import BottomTab from './navigation/BottomTab';
+import AuthStack from './navigation/AuthStack';
+import SplashScreen from './screens/auth/SplashScreen';
 import MainStack from './navigation/MainStack';
 
 const StackApp = createStackNavigator();
 const screenOption = {headerShown: false};
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [token, setToken] = useState(true);
+
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
         <StackApp.Navigator screenOptions={screenOption} presentation="modal">
-          <StackApp.Screen name="HomeApp" component={MainStack} />
+          {/* 토큰 확인 중 splash */}
+          {isLoading ? (
+            <StackApp.Screen name="Splash" component={SplashScreen} />
+          ) : !token ? (
+            // 토큰 없으면 Login
+            <StackApp.Screen name="Auth" component={AuthStack} />
+          ) : (
+            <StackApp.Screen name="HomeApp" component={MainStack} />
+          )}
+          {/* 토큰 있으면 main 화면 */}
         </StackApp.Navigator>
       </NavigationContainer>
     </ApolloProvider>

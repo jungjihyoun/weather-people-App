@@ -1,6 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabNavigator from './BottomTab';
+import AuthStack from './AuthStack';
 
 const Stack = createStackNavigator();
 

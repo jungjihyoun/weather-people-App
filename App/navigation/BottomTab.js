@@ -19,6 +19,7 @@ const BottomTab = () => {
       {mainRoutes.map(data => {
         return (
           <Tab.Screen
+            key={data.name}
             name={data.name}
             component={data.component}
             options={{

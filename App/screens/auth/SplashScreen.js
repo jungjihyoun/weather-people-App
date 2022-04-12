@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {Button, StyleSheet, Text, StatusBar} from 'react-native';
+import {images} from '../../styles/globalStyles';
 import {
   Container,
   SplashImage,
@@ -26,7 +27,7 @@ const SplashScreen = ({navigation}) => {
         <H2 left="20px">Weather people!</H2>
       </TextArea>
       <ImageArea>
-        <SplashImage source={require('../../assets/splash.png')} />
+        <SplashImage source={images.SplashImg} />
       </ImageArea>
     </Container>
   );

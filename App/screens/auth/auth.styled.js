@@ -37,6 +37,7 @@ export const TextWrapper = styled(View)`
 `;
 
 export const H1 = styled(Text)`
+  font-family: 'YdestreetB';
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
@@ -45,6 +46,7 @@ export const H1 = styled(Text)`
 `;
 
 export const H2 = styled(Text)`
+  font-family: 'SUIT-Bold';
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;

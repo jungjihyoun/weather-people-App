@@ -38,6 +38,11 @@ export const storyBoardDimensions = {
 
 export const images = {
   SplashImg: require('../assets/splash.png'),
+  sun_big: require('../assets/sun_B.png'),
+  Kakao: require('../assets/Kakao.png'),
+  Google: require('../assets/Google.png'),
+  Naver: require('../assets/Naver.png'),
+  facebook: require('../assets/facebook.png'),
 };
 
 export const height = (

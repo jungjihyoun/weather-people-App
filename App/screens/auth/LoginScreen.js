@@ -1,12 +1,11 @@
 import React, {useEffect} from 'react';
 import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import LoginContainer from './container/LoginContainer';
 
 const LoginScreen = ({navigation}) => {
   return (
     <>
-      <TouchableOpacity style={{marginTop: 50}}>
-        <Text>LoginScreen</Text>
-      </TouchableOpacity>
+      <LoginContainer />
     </>
   );
 };

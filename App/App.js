@@ -14,8 +14,8 @@ const StackApp = createStackNavigator();
 const screenOption = {headerShown: false};
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [token, setToken] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [token, setToken] = useState(false);
 
   return (
     <ApolloProvider client={client}>

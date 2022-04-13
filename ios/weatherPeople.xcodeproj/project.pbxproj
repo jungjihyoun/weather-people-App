@@ -15,6 +15,8 @@
 		7042BE7C28046A3300BEFE3A /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 7042BE7B28046A3300BEFE3A /* fonts */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8B4D3E71D051F5C28428E04D /* libPods-weatherPeople-weatherPeopleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D40ADB386FF5C769ADA1EC8 /* libPods-weatherPeople-weatherPeopleTests.a */; };
+		BD5EE67BA2C744C29BBAA4E2 /* antfill.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 42A15CE396E44473B1751255 /* antfill.ttf */; };
+		FC58E6FA324E4F0CBF01C485 /* antoutline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6E07F481DB04BAA942FB459 /* antoutline.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,10 +42,12 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = weatherPeople/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = weatherPeople/main.m; sourceTree = "<group>"; };
 		180363248F87506C32F1F8FE /* Pods-weatherPeople.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weatherPeople.release.xcconfig"; path = "Target Support Files/Pods-weatherPeople/Pods-weatherPeople.release.xcconfig"; sourceTree = "<group>"; };
+		42A15CE396E44473B1751255 /* antfill.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = antfill.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antfill.ttf"; sourceTree = "<group>"; };
 		7042BE7B28046A3300BEFE3A /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = fonts; path = ../App/assets/fonts; sourceTree = "<group>"; };
 		78FF7F077B7D06E9DE2C7653 /* libPods-weatherPeople.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-weatherPeople.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = weatherPeople/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC0460B102A0B91BE8077A84 /* Pods-weatherPeople-weatherPeopleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weatherPeople-weatherPeopleTests.release.xcconfig"; path = "Target Support Files/Pods-weatherPeople-weatherPeopleTests/Pods-weatherPeople-weatherPeopleTests.release.xcconfig"; sourceTree = "<group>"; };
+		E6E07F481DB04BAA942FB459 /* antoutline.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = antoutline.ttf; path = "../node_modules/@ant-design/icons-react-native/fonts/antoutline.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FD7867CD895CD891A991E72D /* Pods-weatherPeople-weatherPeopleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weatherPeople-weatherPeopleTests.debug.xcconfig"; path = "Target Support Files/Pods-weatherPeople-weatherPeopleTests/Pods-weatherPeople-weatherPeopleTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,6 +123,16 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		4E5134EDECBE4B2B8490F24F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				42A15CE396E44473B1751255 /* antfill.ttf */,
+				E6E07F481DB04BAA942FB459 /* antoutline.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +150,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				4A64DEE7C8F9E69B631E75D2 /* Pods */,
+				4E5134EDECBE4B2B8490F24F /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -248,6 +263,8 @@
 				7042BE7C28046A3300BEFE3A /* fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				BD5EE67BA2C744C29BBAA4E2 /* antfill.ttf in Resources */,
+				FC58E6FA324E4F0CBF01C485 /* antoutline.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

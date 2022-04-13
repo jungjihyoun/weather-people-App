@@ -32,7 +32,7 @@ const LoginDashBoard = ({navigation}) => {
       </LoginLogoArea>
 
       <SignUpArea>
-        <Text>회원가입</Text>
+        <H5>회원가입</H5>
       </SignUpArea>
     </LoginContainer>
   );

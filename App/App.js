@@ -1,21 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import {StyleSheet, Text} from 'react-native';
-import {Home} from './screens/home/HomeScreen';
 import {ApolloProvider} from '@apollo/client';
 import {client} from './apollo/client';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AuthStack from './navigation/AuthStack';
-import SplashScreen from './screens/auth/SplashScreen';
 import MainStack from './navigation/MainStack';
+import SplashScreen from '../App/screens/auth/SplashScreen';
 
 const StackApp = createStackNavigator();
 const screenOption = {headerShown: false};
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState(true);
 
   return (
     <ApolloProvider client={client}>

@@ -24,9 +24,9 @@ export const colors = {
   kakaoTalk: '#FBE950',
 };
 
-export const storyBoardDimensions = {
-  height: 835,
-  width: 397,
+export const basicDimensions = {
+  height: 812,
+  width: 375,
 };
 
 // export const fontSizes = {
@@ -43,14 +43,19 @@ export const images = {
   Google: require('../assets/Google.png'),
   Naver: require('../assets/Naver.png'),
   facebook: require('../assets/facebook.png'),
+  alarm: require('../assets/al.png'),
+  search: require('../assets/Search.png'),
+  right: require('../assets/right.png'),
+  sort: require('../assets/Sort.png'),
+  weather_sunny: require('../assets/weather_sunny.png'),
 };
 
 export const height = (
   Dimensions.get('screen').height *
-  (1 / storyBoardDimensions.height)
+  (1 / basicDimensions.height)
 ).toFixed(2);
 
 export const width = (
   Dimensions.get('screen').width *
-  (1 / storyBoardDimensions.width)
+  (1 / basicDimensions.width)
 ).toFixed(2);

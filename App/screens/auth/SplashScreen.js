@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {Button, StyleSheet, Text, StatusBar} from 'react-native';
 import {images} from '../../styles/globalStyles';
 import {
   Container,

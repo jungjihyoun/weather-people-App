@@ -10,8 +10,13 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@ant-design/react-native": "^5.0.0",
     "@apollo/client": "^3.5.10",
+    "@react-native-community/cameraroll": "^4.1.2",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-community/segmented-control": "^2.2.2",
+    "@react-native-community/slider": "^4.2.1",
+    "@react-native-picker/picker": "^2.4.0",
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
@@ -19,6 +24,7 @@
     "apollo-link": "^1.2.14",
     "apollo-meteor-integration": "github:meteor/apollo",
     "axios": "^0.26.1",
+    "classnames": "^2.3.1",
     "dotenv": "^16.0.0",
     "graphql": "^16.3.0",
     "react": "17.0.2",
@@ -35,11 +41,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
-    "@babel/preset-react": "^7.16.7",
     "@babel/runtime": "^7.17.8",
     "@react-native-community/eslint-config": "^3.0.1",
     "babel-jest": "^27.5.1",
-    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^8.12.0",
     "jest": "^27.5.1",
     "metro-react-native-babel-preset": "^0.69.1",

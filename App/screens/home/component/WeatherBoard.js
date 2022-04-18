@@ -19,13 +19,13 @@ import {
   WeatherBoardLayout,
 } from '../home.styled';
 
-const WeatherBoard = () => {
+const WeatherBoard = $userLocation => {
   return (
     <WeatherBoardLayout>
       <WeatherCard>
         <TitleArea>
           <IconImage source={images.sort} width={'48px'} />
-          <AreaName>동작구 사당동</AreaName>
+          <AreaName>{$userLocation.$userLocation.address}</AreaName>
           <IconImage source={images.right} width={'48px'} />
         </TitleArea>
 

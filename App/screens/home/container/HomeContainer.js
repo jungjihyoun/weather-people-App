@@ -10,7 +10,7 @@ import {
 import Geolocation from 'react-native-geolocation-service';
 import WeatherBoard from '../component/WeatherBoard';
 import TopSection from '../component/TopSection';
-import {GEO_API} from '../../../utils/api/API';
+import {GEO_API, Short_Weather_API} from '../../../utils/api/API';
 import {GET_USER} from '../../../graphql/USER';
 import {Container} from '../../home/home.styled';
 
@@ -19,26 +19,34 @@ const HomeContainer = () => {
     longitude: '',
     latitude: '',
   });
-  const {data: weather, error: errWeather} = useSWR(
+  const {data: address, error: errWeather} = useSWR(
     GEO_API(userLocation.longitude, userLocation.latitude),
     fetcherWithToken,
   );
-  console.log(weather);
+  const {data: shortWeather, error: errShortWeather} = useSWR(
+    Short_Weather_API(
+      userLocation.longitude,
+      userLocation.latitude,
+      20220419,
+      2200,
+    ),
+    fetcher,
+  );
 
   const fetchLocal = async () => {
     Geolocation.getCurrentPosition(
       async position => {
-        try {
-          await AsyncStorage.setItem(
-            '@userLocation',
-            JSON.stringify({
-              longitude: position.coords.longitude,
-              latitude: position.coords.latitude,
-            }),
-          );
-        } catch (e) {
-          console.error(e);
-        }
+        // try {
+        //   await AsyncStorage.setItem(
+        //     '@userLocation',
+        //     JSON.stringify({
+        //       longitude: position.coords.longitude,
+        //       latitude: position.coords.latitude,
+        //     }),
+        //   );
+        // } catch (e) {
+        //   console.error(e);
+        // }
         setUserLocation({
           longitude: position.coords.longitude,
           latitude: position.coords.latitude,
@@ -51,12 +59,6 @@ const HomeContainer = () => {
     );
   };
 
-  const getData = async () => {
-    const jsonValue = await AsyncStorage.getItem('@userLocation');
-    console.log('111', jsonValue);
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  };
-
   useEffect(() => {
     fetchLocal();
   }, []);
@@ -64,7 +66,7 @@ const HomeContainer = () => {
   return (
     <Container>
       <TopSection />
-      <WeatherBoard />
+      <WeatherBoard address={address} shortWeather={shortWeather} />
     </Container>
   );
 };

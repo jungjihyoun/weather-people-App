@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import {Image, Text} from 'react-native';
+import useSWR, {SWRConfig} from 'swr';
+import {axiosFetcher, graphqlFetcher} from '../../../utils/fetchers/fetcher';
 import {images, colors} from '../../../styles/globalStyles';
 import {
   WeatherCard,
@@ -19,13 +21,18 @@ import {
   WeatherBoardLayout,
 } from '../home.styled';
 
-const WeatherBoard = $userLocation => {
+const WeatherBoard = () => {
+  const {data: weather, error: errWeather} = useSWR(
+    'http://localhost:3000/short/weather?x=126&y=35&date=20220419&time=2300',
+    axiosFetcher,
+  );
+
   return (
     <WeatherBoardLayout>
       <WeatherCard>
         <TitleArea>
           <IconImage source={images.sort} width={'48px'} />
-          <AreaName>{$userLocation.$userLocation.address}</AreaName>
+          <AreaName>사당동</AreaName>
           <IconImage source={images.right} width={'48px'} />
         </TitleArea>
 

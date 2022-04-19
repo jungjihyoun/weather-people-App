@@ -8,6 +8,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AuthStack from './navigation/AuthStack';
 import MainStack from './navigation/MainStack';
 import SplashScreen from '../App/screens/auth/SplashScreen';
+import useSWR, {SWRConfig} from 'swr';
+import {axiosFetcher, graphqlFetcher} from './utils/fetchers/fetcher';
 
 const StackApp = createStackNavigator();
 const screenOption = {headerShown: false};
@@ -17,7 +19,7 @@ function App() {
   const [token, setToken] = useState(true);
 
   return (
-    <ApolloProvider client={client}>
+    <SWRConfig>
       <NavigationContainer>
         <StackApp.Navigator screenOptions={screenOption} presentation="modal">
           {/* 토큰 확인 중 splash */}
@@ -32,7 +34,7 @@ function App() {
           {/* 토큰 있으면 main 화면 */}
         </StackApp.Navigator>
       </NavigationContainer>
-    </ApolloProvider>
+    </SWRConfig>
   );
 }
 

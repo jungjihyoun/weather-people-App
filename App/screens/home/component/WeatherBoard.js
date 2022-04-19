@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import {Image, Text} from 'react-native';
-import useSWR, {SWRConfig} from 'swr';
-import {axiosFetcher, graphqlFetcher} from '../../../utils/fetchers/fetcher';
 import {images, colors} from '../../../styles/globalStyles';
 import {
   WeatherCard,
@@ -21,18 +19,26 @@ import {
   WeatherBoardLayout,
 } from '../home.styled';
 
+<<<<<<< HEAD
 const WeatherBoard = address => {
   console.log(address.shortWeather);
+=======
+const WeatherBoard = $userLocation => {
+>>>>>>> parent of c3239ec (feat : apollo -> swr 로 바꾸기)
   return (
     <WeatherBoardLayout>
       <WeatherCard>
         <TitleArea>
           <IconImage source={images.sort} width={'48px'} />
+<<<<<<< HEAD
           {/* <AreaName>
             {address.length
               ? address.address.documents[0].address_name
               : '위치 탐색 실패'}
           </AreaName> */}
+=======
+          <AreaName>{$userLocation.$userLocation.address}</AreaName>
+>>>>>>> parent of c3239ec (feat : apollo -> swr 로 바꾸기)
           <IconImage source={images.right} width={'48px'} />
         </TitleArea>
 

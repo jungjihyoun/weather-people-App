@@ -1,38 +1,48 @@
 import React, {useEffect, useState} from 'react';
-import Geolocation from 'react-native-geolocation-service';
 import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {gql, useQuery, useMutation, useReactiveVar} from '@apollo/client';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useSWR from 'swr';
+import {
+  fetcher,
+  fetcherWithToken,
+  graphqlFetcher,
+} from '../../../utils/fetchers/fetcher';
+import Geolocation from 'react-native-geolocation-service';
 import WeatherBoard from '../component/WeatherBoard';
 import TopSection from '../component/TopSection';
-import {LOCATION_API} from '../../../utils/api/location';
-import {GEO_API} from '../../../utils/api/geo';
-import {DUST_API, Short_Weather_API} from '../../../utils/api/weather';
+import {GEO_API} from '../../../utils/api/API';
 import {GET_USER} from '../../../graphql/USER';
-import * as userStore from '../../../store/user';
 import {Container} from '../../home/home.styled';
 
 const HomeContainer = () => {
-  const $userLocation = useReactiveVar(userStore.userLocationVar);
-  const {loading, error, data} = useQuery(GET_USER);
-  const user = data?.allUser.length !== 0 ? data?.allUser : 'null';
+  const [userLocation, setUserLocation] = useState({
+    longitude: '',
+    latitude: '',
+  });
+  const {data: weather, error: errWeather} = useSWR(
+    GEO_API(userLocation.longitude, userLocation.latitude),
+    fetcherWithToken,
+  );
+  console.log(weather);
 
   const fetchLocal = async () => {
-    let resultXY = {x: undefined, y: undefined};
     Geolocation.getCurrentPosition(
       async position => {
-        const result = await GEO_API(
-          position.coords.longitude,
-          position.coords.latitude,
-        );
-
-        userStore.setAddress(
-          position.coords.longitude,
-          position.coords.latitude,
-          result && result.documents[0].address_name,
-          result && result.documents[0].region_1depth_name,
-          result && result.documents[0].region_2depth_name,
-          result && result.documents[0].region_3depth_name,
-        );
+        try {
+          await AsyncStorage.setItem(
+            '@userLocation',
+            JSON.stringify({
+              longitude: position.coords.longitude,
+              latitude: position.coords.latitude,
+            }),
+          );
+        } catch (e) {
+          console.error(e);
+        }
+        setUserLocation({
+          longitude: position.coords.longitude,
+          latitude: position.coords.latitude,
+        });
       },
       error => {
         console.log(error.code, error.message);
@@ -41,25 +51,20 @@ const HomeContainer = () => {
     );
   };
 
-  const fetchDust = async () => {
-    const data = await Short_Weather_API(
-      $userLocation.x,
-      $userLocation.y,
-      20220418,
-      2300,
-    );
-    console.log(data, '날씨');
+  const getData = async () => {
+    const jsonValue = await AsyncStorage.getItem('@userLocation');
+    console.log('111', jsonValue);
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
   };
 
   useEffect(() => {
     fetchLocal();
-    fetchDust();
   }, []);
 
   return (
     <Container>
       <TopSection />
-      <WeatherBoard $userLocation={$userLocation} />
+      <WeatherBoard />
     </Container>
   );
 };

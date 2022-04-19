@@ -7,5 +7,5 @@ export const LOCATION_API = query =>
 export const DUST_API = sidoName =>
   `http://localhost:3000/dust?sidoName=${sidoName}`;
 
-export const Short_Weather_API = async (x, y, date, time) =>
+export const Short_Weather_API = (x, y, date, time) =>
   `http://localhost:3000/short/weather?x=${x}&y=${y}&date=${date}&time=${time}`;

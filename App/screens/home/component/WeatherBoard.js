@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 import {Image, Text} from 'react-native';
-import useSWR, {SWRConfig} from 'swr';
-import {axiosFetcher, graphqlFetcher} from '../../../utils/fetchers/fetcher';
 import {images, colors} from '../../../styles/globalStyles';
 import {
   WeatherCard,
@@ -21,18 +19,26 @@ import {
   WeatherBoardLayout,
 } from '../home.styled';
 
-const WeatherBoard = () => {
-  const {data: weather, error: errWeather} = useSWR(
-    'http://localhost:3000/short/weather?x=126&y=35&date=20220419&time=2300',
-    axiosFetcher,
-  );
-
+<<<<<<< HEAD
+const WeatherBoard = address => {
+  console.log(address.shortWeather);
+=======
+const WeatherBoard = $userLocation => {
+>>>>>>> parent of c3239ec (feat : apollo -> swr 로 바꾸기)
   return (
     <WeatherBoardLayout>
       <WeatherCard>
         <TitleArea>
           <IconImage source={images.sort} width={'48px'} />
-          <AreaName>사당동</AreaName>
+<<<<<<< HEAD
+          {/* <AreaName>
+            {address.length
+              ? address.address.documents[0].address_name
+              : '위치 탐색 실패'}
+          </AreaName> */}
+=======
+          <AreaName>{$userLocation.$userLocation.address}</AreaName>
+>>>>>>> parent of c3239ec (feat : apollo -> swr 로 바꾸기)
           <IconImage source={images.right} width={'48px'} />
         </TitleArea>
 
@@ -40,7 +46,10 @@ const WeatherBoard = () => {
 
         <Row>
           <CustomText size="40px" weight={700}>
-            5 º
+            {address.shortWeather.length &&
+              address.shortWeather.filter(e => e.category === 'TMP')[0]
+                .fcstValue}
+            º
           </CustomText>
           <Column>
             <RowGap>
@@ -48,7 +57,11 @@ const WeatherBoard = () => {
                 최저
               </CustomText>
               <CustomText size="18px" weight={700}>
-                -3 º
+                {/* {
+                  address.shortWeather.filter(e => e.category === 'TMN')[0]
+                    .fcstValue
+                } */}
+                º
               </CustomText>
             </RowGap>
             <RowGap>
@@ -56,14 +69,21 @@ const WeatherBoard = () => {
                 최고
               </CustomText>
               <CustomText size="18px" weight={700}>
-                9 º
+                {/* {address.length &&
+                  address.shortWeather.filter(e => e.category === 'TMX')[0]
+                    .fcstValue} */}
+                º
               </CustomText>
             </RowGap>
           </Column>
         </Row>
         <CommentArea>
           <CustomText size="14px" weight={700} bottom={5}>
-            약간 흐림 , 강수확률 0%
+            약간 흐림 , 강수확률
+            {address.shortWeather.length &&
+              address.shortWeather.filter(e => e.category === 'POP')[0]
+                .fcstValue}
+            %
           </CustomText>
           <CustomText size="14px" weight={700} color={colors.prPink}>
             어제보다 5º 높음
@@ -77,19 +97,14 @@ const WeatherBoard = () => {
             <CustomText size="12px" weight={700} bottom={15}>
               일출
             </CustomText>
-            <CustomText size="14px" weight={400}>
-              {' '}
-              6 : 37{' '}
-            </CustomText>
+            <CustomText size="14px" weight={400}></CustomText>
           </DetailItem>
 
           <DetailItem>
             <CustomText size="12px" weight={700} bottom={15}>
               자외선
             </CustomText>
-            <CustomText size="14px" weight={400}>
-              보통
-            </CustomText>
+            <CustomText size="14px" weight={400}></CustomText>
           </DetailItem>
 
           <DetailItem>
@@ -97,7 +112,10 @@ const WeatherBoard = () => {
               습도
             </CustomText>
             <CustomText size="14px" weight={400}>
-              55%
+              {address.shortWeather.length &&
+                address.shortWeather.filter(e => e.category === 'REH')[0]
+                  .fcstValue}
+              %
             </CustomText>
           </DetailItem>
 
@@ -105,9 +123,7 @@ const WeatherBoard = () => {
             <CustomText size="12px" weight={700} bottom={15}>
               미세
             </CustomText>
-            <CustomText size="14px" weight={400}>
-              좋음
-            </CustomText>
+            <CustomText size="14px" weight={400}></CustomText>
           </DetailItem>
         </BottomArea>
       </WeatherCard>

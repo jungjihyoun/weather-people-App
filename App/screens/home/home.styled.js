@@ -143,3 +143,83 @@ export const CustomText = styled(Text)`
   margin-bottom: ${props => props.bottom || 0}px
   color: ${props => props.color || '#000000'} 
 `;
+
+// OutfitPhotos
+export const OutfitPhotosLayout = styled.View`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 37px 0;
+`;
+
+export const OutfitSubTitle = styled.Text`
+  font-family: ${fonts.YdeB};
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.734615px;
+`;
+
+export const OutfitTitle = styled.Text`
+  font-family: ${fonts.YdeB};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: -1.07135px;
+  text-align: center;
+`;
+
+export const OutfitBorder = styled.View`
+  width: 184px;
+  height: 42px;
+  background: ${colors.prPink};
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 36px 0;
+`;
+
+export const OutfitTextArea = styled.View`
+  max-width: 198px;
+  min-height: 144px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Outfith1 = styled.Text`
+  font-family: ${fonts.suitB};
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+`;
+
+export const Outfith2 = styled.Text`
+  height: 36px;
+  font-family: ${fonts.suitM};
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #808080;
+  margin-top: 8px;
+`;
+
+export const OutfitImage = styled.Image`
+  height: 34px;
+  width: 34px;
+  border-radius: 50px;
+  background: pink;
+  margin-right: 10px;
+`;
+
+export const OutfitRow = styled(View)`
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto 0 0;
+  align-items: center;
+`;

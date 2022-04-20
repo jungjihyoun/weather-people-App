@@ -3,6 +3,7 @@ import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import WeatherBoard from '../component/WeatherBoard';
+import OutfitPhotos from '../component/OutfitPhotos';
 import TopSection from '../component/TopSection';
 import {Container} from '../../home/home.styled';
 
@@ -37,6 +38,7 @@ const HomeContainer = () => {
     <Container>
       <TopSection />
       <WeatherBoard />
+      <OutfitPhotos />
     </Container>
   );
 };

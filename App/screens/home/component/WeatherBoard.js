@@ -4,7 +4,6 @@ import useShortWeather from '../../../hooks/useShortWeather';
 import useFetchGeo from '../../../hooks/useFetchGeo';
 import useFetchDust from '../../../hooks/useFetchDust';
 import {getToday, getTime} from '../../../utils/DATE';
-import {handleSido} from '../../../utils/SIDO';
 import {images, colors} from '../../../styles/globalStyles';
 import {
   WeatherCard,
@@ -90,94 +89,102 @@ const WeatherBoard = () => {
         return '매우나쁨';
       }
     }
-    console.log(shortWeather);
   };
 
   // TODO : 데이터 패칭중 로딩 스켈레톤 처리
   return (
     <WeatherBoardLayout>
-      {shortWeather && (
-        <WeatherCard>
-          <TitleArea>
-            <IconImage source={images.sort} width={'48px'} />
-            <AreaName>{userGeo.documents[0].address_name}</AreaName>
-            <IconImage source={images.right} width={'48px'} />
-          </TitleArea>
+      <WeatherCard>
+        <TitleArea>
+          <IconImage source={images.sort} width={'48px'} />
+          <AreaName>
+            {!userGeoLoading ? userGeo.documents[0].address_name : 'Loading'}
+          </AreaName>
+          <IconImage source={images.right} width={'48px'} />
+        </TitleArea>
 
-          <WeatherImage source={images.weather_sunny} />
+        <WeatherImage source={images.weather_sunny} />
 
-          <Row>
-            <CustomText size="40px" weight={700}>
-              {shortWeather.filter(e => e.category === 'TMP')[0].fcstValue}º
-            </CustomText>
-            <Column>
-              <RowGap>
-                <CustomText size="12px" weight={400}>
-                  최저
-                </CustomText>
-                {/* <CustomText size="18px" weight={700}>
+        <Row>
+          <CustomText size="40px" weight={700}>
+            {!shortWeatherLoading
+              ? shortWeather.filter(e => e.category === 'TMP')[0].fcstValue
+              : ''}
+            º
+          </CustomText>
+          <Column>
+            <RowGap>
+              <CustomText size="12px" weight={400}>
+                최저
+              </CustomText>
+              {/* <CustomText size="18px" weight={700}>
                   {shortWeather.filter(e => e.category === 'TMN')[0].fcstValue}º
                 </CustomText> */}
-              </RowGap>
-              <RowGap>
-                <CustomText size="12px" weight={400}>
-                  최고
-                </CustomText>
-                {/* <CustomText size="18px" weight={700}>
+            </RowGap>
+            <RowGap>
+              <CustomText size="12px" weight={400}>
+                최고
+              </CustomText>
+              {/* <CustomText size="18px" weight={700}>
                   {shortWeather.filter(e => e.category === 'TMX')[0].fcstValue}º
                 </CustomText> */}
-              </RowGap>
-            </Column>
-          </Row>
-          <CommentArea>
-            <CustomText size="14px" weight={700} bottom={5}>
-              약간 흐림 , 강수확률{' '}
-              {shortWeather.filter(e => e.category === 'POP')[0].fcstValue}%
+            </RowGap>
+          </Column>
+        </Row>
+        <CommentArea>
+          <CustomText size="14px" weight={700} bottom={5}>
+            약간 흐림 , 강수확률{' '}
+            {!shortWeatherLoading
+              ? shortWeather.filter(e => e.category === 'POP')[0].fcstValue
+              : ''}
+            %
+          </CustomText>
+          <CustomText size="14px" weight={700} color={colors.prPink}>
+            어제보다 5º 높음
+          </CustomText>
+        </CommentArea>
+
+        <Divider />
+
+        <BottomArea>
+          <DetailItem>
+            <CustomText size="12px" weight={700} bottom={15}>
+              일출
             </CustomText>
-            <CustomText size="14px" weight={700} color={colors.prPink}>
-              어제보다 5º 높음
+            <CustomText size="14px" weight={400}></CustomText>
+          </DetailItem>
+
+          <DetailItem>
+            <CustomText size="12px" weight={700} bottom={15}>
+              자외선
             </CustomText>
-          </CommentArea>
+            <CustomText size="14px" weight={400}>
+              {handleSkyGrade('오존')}
+            </CustomText>
+          </DetailItem>
 
-          <Divider />
+          <DetailItem>
+            <CustomText size="12px" weight={700} bottom={15}>
+              습도
+            </CustomText>
+            <CustomText size="14px" weight={400}>
+              {!shortWeatherLoading
+                ? shortWeather.filter(e => e.category === 'REH')[0].fcstValue
+                : ''}
+              %
+            </CustomText>
+          </DetailItem>
 
-          <BottomArea>
-            <DetailItem>
-              <CustomText size="12px" weight={700} bottom={15}>
-                일출
-              </CustomText>
-              <CustomText size="14px" weight={400}></CustomText>
-            </DetailItem>
-
-            <DetailItem>
-              <CustomText size="12px" weight={700} bottom={15}>
-                자외선
-              </CustomText>
-              <CustomText size="14px" weight={400}>
-                {handleSkyGrade('오존')}
-              </CustomText>
-            </DetailItem>
-
-            <DetailItem>
-              <CustomText size="12px" weight={700} bottom={15}>
-                습도
-              </CustomText>
-              <CustomText size="14px" weight={400}>
-                {shortWeather.filter(e => e.category === 'REH')[0].fcstValue}%
-              </CustomText>
-            </DetailItem>
-
-            <DetailItem>
-              <CustomText size="12px" weight={700} bottom={15}>
-                미세
-              </CustomText>
-              <CustomText size="14px" weight={400}>
-                {handleSkyGrade('미세먼지')}
-              </CustomText>
-            </DetailItem>
-          </BottomArea>
-        </WeatherCard>
-      )}
+          <DetailItem>
+            <CustomText size="12px" weight={700} bottom={15}>
+              미세
+            </CustomText>
+            <CustomText size="14px" weight={400}>
+              {handleSkyGrade('미세먼지')}
+            </CustomText>
+          </DetailItem>
+        </BottomArea>
+      </WeatherCard>
     </WeatherBoardLayout>
   );
 };

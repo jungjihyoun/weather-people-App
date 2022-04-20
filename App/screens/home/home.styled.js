@@ -147,11 +147,11 @@ export const CustomText = styled(Text)`
 // OutfitPhotos
 export const OutfitPhotosLayout = styled.View`
   width: 100%;
-  height: 100%;
+  height: 560px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 37px 0;
+  padding-top: 37px;
 `;
 
 export const OutfitSubTitle = styled.Text`
@@ -244,4 +244,86 @@ export const OutfitImgId = styled(Text)`
   position: absolute;
   bottom: 16px;
   left: 8px;
+`;
+
+// HotPost
+
+export const HotPostLayout = styled(View)`
+  background: ${colors.white};
+  height: 382px;
+  width: 100%;
+  min-height: 400px;
+`;
+
+export const HotPostH1 = styled(Text)`
+  font-family: ${fonts.YdeB};
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 36px;
+  letter-spacing: -0.6px;
+`;
+
+export const HotPostH2 = styled(Text)`
+  font-family: ${fonts.YdeB};
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.6px;
+`;
+
+export const HotPostTop = styled(View)`
+  display: flex;
+  flex-direction: row;
+  height: 124px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+`;
+
+export const PureColumn = styled(View)`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PureRow = styled(View)`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const HotPostContent = styled(View)`
+  margin: 0 auto;
+  max-width: ${width * 250}px;
+  width: 85%;
+  min-height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const HotPostContentTitle = styled(Text)`
+  font-family: ${fonts.suitB};
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 22px;
+  letter-spacing: 0.0703846px;
+`;
+
+export const HotPostContentId = styled(Text)`
+  font-family: ${fonts.suitL};
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 14px;
+  letter-spacing: 0.0703846px;
+  color: #c1c1c1;
+  margin-right: 14px;
+`;
+
+export const HotPostUserImage = styled.Image`
+  height: 34px;
+  width: 34px;
+  border-radius: 50px;
+  background: pink;
+  margin-right: 18px;
+  margin-left: 14px;
 `;

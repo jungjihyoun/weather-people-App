@@ -48,6 +48,7 @@ export const images = {
   right: require('../assets/right.png'),
   sort: require('../assets/Sort.png'),
   weather_sunny: require('../assets/weather_sunny.png'),
+  cloud: require('../assets/cloud.png'),
 };
 
 export const height = (

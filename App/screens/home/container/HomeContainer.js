@@ -5,6 +5,7 @@ import Geolocation from 'react-native-geolocation-service';
 import WeatherBoard from '../component/WeatherBoard';
 import OutfitPhotos from '../component/OutfitPhotos';
 import TopSection from '../component/TopSection';
+import HotPost from '../component/HotPost';
 import {Container} from '../../home/home.styled';
 
 const HomeContainer = () => {
@@ -39,6 +40,7 @@ const HomeContainer = () => {
       <TopSection />
       <WeatherBoard />
       <OutfitPhotos />
+      <HotPost />
     </Container>
   );
 };

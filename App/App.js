@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Geolocation from 'react-native-geolocation-service';
+import useSWR, {SWRConfig} from 'swr';
 import {StyleSheet, Text} from 'react-native';
 import {ApolloProvider} from '@apollo/client';
 import {client} from './apollo/client';
@@ -17,7 +17,7 @@ function App() {
   const [token, setToken] = useState(true);
 
   return (
-    <ApolloProvider client={client}>
+    <SWRConfig>
       <NavigationContainer>
         <StackApp.Navigator screenOptions={screenOption} presentation="modal">
           {/* 토큰 확인 중 splash */}
@@ -32,7 +32,7 @@ function App() {
           {/* 토큰 있으면 main 화면 */}
         </StackApp.Navigator>
       </NavigationContainer>
-    </ApolloProvider>
+    </SWRConfig>
   );
 }
 

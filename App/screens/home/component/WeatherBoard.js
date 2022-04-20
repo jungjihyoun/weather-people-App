@@ -56,39 +56,44 @@ const WeatherBoard = () => {
 
   //  TODO : 미세먼지 지역구로 찾아올 수 있게 utils
   // 전국, 서울, 부산, 대구, 인천, 광주, 대전, 울산, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주, 세종
-  const {dust, dustLoading} = useFetchDust(
-    handleSido(userGeo.documents && userGeo.documents[0].region_1depth_name),
+  const {dust, dustErr} = useFetchDust(
+    userLocation.longitude,
+    userLocation.latitude,
   );
 
   const handleSkyGrade = type => {
     //  1 : 좋음 , 2 : 보통 , 3 : 나쁨 , 4 : 매우나쁨
-    const dustResult =
-      type === '오존'
-        ? dust.response.body.items.map(e => e.o3Grade)
-        : dust.response.body.items.map(e => e.pm10Grade);
+    if (dust) {
+      const dustResult =
+        type === '오존'
+          ? dust.response.body.items.map(e => e.o3Grade)
+          : dust.response.body.items.map(e => e.pm10Grade);
 
-    const result = {};
-    dustResult.forEach(x => {
-      result[x] = (result[x] || 0) + 1;
-    });
+      const result = {};
+      dustResult.forEach(x => {
+        result[x] = (result[x] || 0) + 1;
+      });
 
-    const maxDust = parseInt(
-      Object.keys(result).find(
-        key => result[key] === Math.max(...Object.values(result)),
-      ),
-    );
+      const maxDust = parseInt(
+        Object.keys(result).find(
+          key => result[key] === Math.max(...Object.values(result)),
+        ),
+      );
 
-    if (maxDust < 2) {
-      return '좋음';
-    } else if (maxDust === 2) {
-      return '보통';
-    } else if (maxDust === 3) {
-      return '나쁨';
-    } else if (maxDust === 4) {
-      return '매우나쁨';
+      if (maxDust < 2) {
+        return '좋음';
+      } else if (maxDust === 2) {
+        return '보통';
+      } else if (maxDust === 3) {
+        return '나쁨';
+      } else if (maxDust === 4) {
+        return '매우나쁨';
+      }
     }
+    console.log(shortWeather);
   };
 
+  // TODO : 데이터 패칭중 로딩 스켈레톤 처리
   return (
     <WeatherBoardLayout>
       {shortWeather && (

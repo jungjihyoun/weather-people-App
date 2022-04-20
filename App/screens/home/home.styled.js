@@ -223,3 +223,25 @@ export const OutfitRow = styled(View)`
   margin: 0 auto 0 0;
   align-items: center;
 `;
+
+export const OutfitColumn = styled(View)`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const OutfitImgWrapper = styled(View)`
+  position: relative;
+  height: 275;
+  width: 197;
+`;
+
+export const OutfitImgId = styled(Text)`
+  font-family: ${fonts.suitB};
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  color: ${colors.white};
+  position: absolute;
+  bottom: 16px;
+  left: 8px;
+`;

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useShortWeather from '../../../hooks/useShortWeather';
-import useFetchAllUser from '../../../hooks/useFetchAllUser';
 import useFetchGeo from '../../../hooks/useFetchGeo';
+import useFetchDust from '../../../hooks/useFetchDust';
 import {getToday, getTime} from '../../../utils/DATE';
+import {handleSido} from '../../../utils/SIDO';
 import {images, colors} from '../../../styles/globalStyles';
 import {
   WeatherCard,
@@ -25,6 +26,10 @@ import {
 const WeatherBoard = () => {
   const [userLocation, setUserLocation] = useState({});
 
+  useEffect(() => {
+    fetchAsyncLocation();
+  }, []);
+
   const fetchAsyncLocation = async () => {
     try {
       const value = await AsyncStorage.getItem('@userLocation');
@@ -37,10 +42,6 @@ const WeatherBoard = () => {
     }
   };
 
-  useEffect(() => {
-    fetchAsyncLocation();
-  }, []);
-
   const {shortWeather, shortWeatherLoading} = useShortWeather(
     userLocation.longitude,
     userLocation.latitude,
@@ -52,6 +53,41 @@ const WeatherBoard = () => {
     userLocation.longitude,
     userLocation.latitude,
   );
+
+  //  TODO : 미세먼지 지역구로 찾아올 수 있게 utils
+  // 전국, 서울, 부산, 대구, 인천, 광주, 대전, 울산, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주, 세종
+  const {dust, dustLoading} = useFetchDust(
+    handleSido(userGeo.documents && userGeo.documents[0].region_1depth_name),
+  );
+
+  const handleSkyGrade = type => {
+    //  1 : 좋음 , 2 : 보통 , 3 : 나쁨 , 4 : 매우나쁨
+    const dustResult =
+      type === '오존'
+        ? dust.response.body.items.map(e => e.o3Grade)
+        : dust.response.body.items.map(e => e.pm10Grade);
+
+    const result = {};
+    dustResult.forEach(x => {
+      result[x] = (result[x] || 0) + 1;
+    });
+
+    const maxDust = parseInt(
+      Object.keys(result).find(
+        key => result[key] === Math.max(...Object.values(result)),
+      ),
+    );
+
+    if (maxDust < 2) {
+      return '좋음';
+    } else if (maxDust === 2) {
+      return '보통';
+    } else if (maxDust === 3) {
+      return '나쁨';
+    } else if (maxDust === 4) {
+      return '매우나쁨';
+    }
+  };
 
   return (
     <WeatherBoardLayout>
@@ -90,7 +126,7 @@ const WeatherBoard = () => {
           </Row>
           <CommentArea>
             <CustomText size="14px" weight={700} bottom={5}>
-              약간 흐림 , 강수확률
+              약간 흐림 , 강수확률{' '}
               {shortWeather.filter(e => e.category === 'POP')[0].fcstValue}%
             </CustomText>
             <CustomText size="14px" weight={700} color={colors.prPink}>
@@ -112,7 +148,9 @@ const WeatherBoard = () => {
               <CustomText size="12px" weight={700} bottom={15}>
                 자외선
               </CustomText>
-              <CustomText size="14px" weight={400}></CustomText>
+              <CustomText size="14px" weight={400}>
+                {handleSkyGrade('오존')}
+              </CustomText>
             </DetailItem>
 
             <DetailItem>
@@ -128,7 +166,9 @@ const WeatherBoard = () => {
               <CustomText size="12px" weight={700} bottom={15}>
                 미세
               </CustomText>
-              <CustomText size="14px" weight={400}></CustomText>
+              <CustomText size="14px" weight={400}>
+                {handleSkyGrade('미세먼지')}
+              </CustomText>
             </DetailItem>
           </BottomArea>
         </WeatherCard>

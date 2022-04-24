@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React, {useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Geolocation from 'react-native-geolocation-service';
 import WeatherBoard from '../component/WeatherBoard';
 import OutfitPhotos from '../component/OutfitPhotos';
 import TopSection from '../component/TopSection';
 import HotPost from '../component/HotPost';
+import WeatherPick from '../component/WeatherPick';
 import {Container} from '../../home/home.styled';
 
 const HomeContainer = () => {
@@ -41,6 +41,7 @@ const HomeContainer = () => {
       <WeatherBoard />
       <OutfitPhotos />
       <HotPost />
+      <WeatherPick />
     </Container>
   );
 };

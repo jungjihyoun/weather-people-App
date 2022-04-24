@@ -97,9 +97,9 @@ const WeatherBoard = () => {
       <WeatherCard>
         <TitleArea>
           <IconImage source={images.sort} width={'48px'} />
-          <AreaName>
-            {!userGeoLoading ? userGeo.documents[0].address_name : 'Loading'}
-          </AreaName>
+          {/* <AreaName>
+            {userGeo ? userGeo?.documents[0].address_name : 'Loading'}
+          </AreaName> */}
           <IconImage source={images.right} width={'48px'} />
         </TitleArea>
 

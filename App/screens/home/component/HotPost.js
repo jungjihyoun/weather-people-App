@@ -62,6 +62,22 @@ const HotPost = () => {
               </PureRow>
             </PureColumn>
           </HotPostContent>
+          <HotPostContent>
+            <HotPostContentTitle>1</HotPostContentTitle>
+
+            <HotPostUserImage source={images.weather_sunny} />
+
+            <PureColumn>
+              <HotPostContentTitle ellipsizeMode="tail" numberOfLines={1}>
+                게시글 제목 제목은 한줄 케이스로만 보여주기 보여주기 보여주기
+              </HotPostContentTitle>
+              <PureRow>
+                <HotPostContentId>@유저아이디</HotPostContentId>
+                <HotPostContentId>댓글수</HotPostContentId>
+                <HotPostContentId>조아요수</HotPostContentId>
+              </PureRow>
+            </PureColumn>
+          </HotPostContent>
         </>
 
         <HotPostContent>

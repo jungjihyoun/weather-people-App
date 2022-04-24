@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components/native';
-import {Text, SafeAreaView, ScrollView, Image, View} from 'react-native';
+import {Text, FlatList, ScrollView, Image, View} from 'react-native';
 import {colors, height, width, fonts} from '../../styles/globalStyles';
 
 // WeatherBoard
@@ -326,4 +326,68 @@ export const HotPostUserImage = styled.Image`
   background: pink;
   margin-right: 18px;
   margin-left: 14px;
+`;
+
+// WeatherPick
+export const WeatherPickLayout = styled(View)`
+  background: ${colors.white};
+  height: 382px;
+  width: 100%;
+  min-height: 400px;
+`;
+
+export const WeatherPickBorder = styled(View)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: ${props => props.width || '138px'}
+  height: 31px;
+  background: ${props => props.background}
+  border-radius: 64px;
+  margin: 6px 0 0 16px;
+`;
+
+export const WeatherPickH1 = styled(Text)`
+  font-family: ${fonts.YdeB};
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  color: #111111;
+`;
+
+export const WeatherPickH2 = styled(Text)`
+  font-family: ${fonts.YdeB};
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 23px;
+  color: #111111;
+`;
+
+export const WeatherPickTop = styled(View)`
+  display: flex;
+  flex-direction: row;
+  height: 124px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+`;
+
+export const WeatherPickSlider = styled(FlatList)`
+  display: flex;
+  flex-direction: row;
+  // justify-content: center;
+  // align-items: center;
+  // width: ${props => props.width || '138px'}
+  height: 90px;
+  margin: 23px 0 0 0;
+  // overflow-x: scroll;
+`;
+
+export const WeatherPickImage = styled(Image)`
+  width: 56px;
+  height: 56px;
+  border: 2px solid #62b3ff;
+  border-radius: 50px;
+  margin-left: 20px;
 `;

@@ -1,20 +1,44 @@
-import React, {useEffect} from 'react';
-import {View , Text, StyleSheet} from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Geolocation from 'react-native-geolocation-service';
+import React, {useEffect , useState} from 'react';
+import {View , Text, StyleSheet , TouchableWithoutFeedback} from 'react-native';
+import { launchImageLibrary} from 'react-native-image-picker';
 import TopSection from '../component/TopSection';
 import ImageSlides from '../component/ImageSlides';
 import UploadInputArea from '../component/UploadInputArea';
 import {Container} from '../Upload.Styled';
-import {fonts, images} from "../../../styles/globalStyles";
 
 const UploadContainer = () => {
+  const [photos , setPhotos] = useState([])
+
+  const handleOpenGallery = () => {
+    setPhotos([])
+
+    launchImageLibrary({selectionLimit : 0 , saveToPhotos : false}).then(data => {
+      data.assets.length && data.assets.map((e)=>{
+        setPhotos([
+          ...photos,
+          {
+            uri: e.uri,
+            type: e.type,
+            name: e.fileName,
+          }
+        ]);
+      })
+    })
+  }
+
+  useEffect(() => {
+    handleOpenGallery()
+  } , [])
+
   return (
     <>
       <TopSection />
       <Container>
-        <ImageSlides />
+        <ImageSlides photos={photos} onOpenGallery={handleOpenGallery}/>
         <UploadInputArea />
+        <TouchableWithoutFeedback onPress={()=> handleOpenGallery()}>
+          <Text>testOpenClick</Text>
+        </TouchableWithoutFeedback>
       </Container>
     </>
   );

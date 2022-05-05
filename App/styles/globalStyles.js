@@ -49,6 +49,9 @@ export const images = {
   sort: require('../assets/Sort.png'),
   weather_sunny: require('../assets/weather_sunny.png'),
   cloud: require('../assets/cloud.png'),
+  cloud_small: require('../assets/cloud_small_icon.png'),
+  location_icon: require('../assets/location_icon.png'),
+  write_icon: require('../assets/write_icon.png'),
 };
 
 export const height = (

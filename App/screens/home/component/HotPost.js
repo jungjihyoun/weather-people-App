@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, Image, StyleSheet} from 'react-native';
+import { Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import {images} from '../../../styles/globalStyles';
 
@@ -11,91 +11,66 @@ import {
   PureRow,
   PureColumn,
   HotPostContent,
-  OutfitRow,
   HotPostUserImage,
   HotPostContentTitle,
   HotPostContentId,
 } from '../home.styled';
+import useFetchRecord from '../../../hooks/userFetchRecord';
 
 const HotPost = () => {
+  const {record, recordLoading} = useFetchRecord();
+  console.log('fetch Record => ' , record)
+
+  // TODO : 컴포넌트 분리
+  const swiperInner = () => {
+    let pivot = 0
+    return record.allRecord.map((e, index) => {
+      if (pivot < record.allRecord.length){
+        pivot += 3
+        return (
+          <>
+            {
+              record.allRecord.map((e, index) => {
+                if ( pivot - 3 <= index && index < pivot) {
+                  return (
+                      <HotPostContent key={`currentPost-${index}`}>
+                        <HotPostContentTitle>{index + 1}</HotPostContentTitle>
+
+                        <HotPostUserImage source={images.weather_sunny}/>
+
+                        <PureColumn>
+                          <HotPostContentTitle ellipsizeMode="tail" numberOfLines={1}>
+                            {e.title}
+                          </HotPostContentTitle>
+                          <PureRow>
+                            <HotPostContentId>@유저아이디</HotPostContentId>
+                            <HotPostContentId>댓글수</HotPostContentId>
+                            <HotPostContentId>좋아요수</HotPostContentId>
+                          </PureRow>
+                        </PureColumn>
+                      </HotPostContent>
+                  );
+                }
+              })
+            }
+          </>
+        )
+      }
+    })
+  };
+
   return (
     <HotPostLayout>
       <HotPostTop>
         <PureColumn>
-          <HotPostH1>인기 게시물</HotPostH1>
-          <HotPostH2>현재 위치에서 인기있는 게시물이에요</HotPostH2>
+          <HotPostH1>최신 게시물</HotPostH1>
+          <HotPostH2>현재 위치에서 방금 올라온 게시물이에요</HotPostH2>
         </PureColumn>
         <Image source={images.cloud} width={'84px'} />
       </HotPostTop>
 
       <Swiper showsButtons={false} showsPagination={true}>
-        <>
-          <HotPostContent>
-            <HotPostContentTitle>1</HotPostContentTitle>
-
-            <HotPostUserImage source={images.weather_sunny} />
-
-            <PureColumn>
-              <HotPostContentTitle ellipsizeMode="tail" numberOfLines={1}>
-                게시글 제목 제목은 한줄 케이스로만 보여주기 보여주기 보여주기
-              </HotPostContentTitle>
-              <PureRow>
-                <HotPostContentId>@유저아이디</HotPostContentId>
-                <HotPostContentId>댓글수</HotPostContentId>
-                <HotPostContentId>조아요수</HotPostContentId>
-              </PureRow>
-            </PureColumn>
-          </HotPostContent>
-          <HotPostContent>
-            <HotPostContentTitle>1</HotPostContentTitle>
-
-            <HotPostUserImage source={images.weather_sunny} />
-
-            <PureColumn>
-              <HotPostContentTitle ellipsizeMode="tail" numberOfLines={1}>
-                게시글 제목 제목은 한줄 케이스로만 보여주기 보여주기 보여주기
-              </HotPostContentTitle>
-              <PureRow>
-                <HotPostContentId>@유저아이디</HotPostContentId>
-                <HotPostContentId>댓글수</HotPostContentId>
-                <HotPostContentId>조아요수</HotPostContentId>
-              </PureRow>
-            </PureColumn>
-          </HotPostContent>
-          <HotPostContent>
-            <HotPostContentTitle>1</HotPostContentTitle>
-
-            <HotPostUserImage source={images.weather_sunny} />
-
-            <PureColumn>
-              <HotPostContentTitle ellipsizeMode="tail" numberOfLines={1}>
-                게시글 제목 제목은 한줄 케이스로만 보여주기 보여주기 보여주기
-              </HotPostContentTitle>
-              <PureRow>
-                <HotPostContentId>@유저아이디</HotPostContentId>
-                <HotPostContentId>댓글수</HotPostContentId>
-                <HotPostContentId>조아요수</HotPostContentId>
-              </PureRow>
-            </PureColumn>
-          </HotPostContent>
-        </>
-
-        <HotPostContent>
-          <HotPostContentTitle>1</HotPostContentTitle>
-
-          <HotPostUserImage source={images.weather_sunny} />
-
-          <PureColumn>
-            <HotPostContentTitle ellipsizeMode="tail" numberOfLines={1}>
-              게시글 제목 제목은 한줄 케이스로만 보여주기 보여주기 보여주기
-            </HotPostContentTitle>
-            <PureRow>
-              <HotPostContentId>@유저아이디</HotPostContentId>
-              <HotPostContentId>댓글수</HotPostContentId>
-              <HotPostContentId>조아요수</HotPostContentId>
-            </PureRow>
-          </PureColumn>
-        </HotPostContent>
+        {swiperInner()}
       </Swiper>
     </HotPostLayout>
   );

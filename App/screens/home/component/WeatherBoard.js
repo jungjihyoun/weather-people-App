@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import useShortWeather from '../../../hooks/useShortWeather';
 import useFetchGeo from '../../../hooks/useFetchGeo';
 import useFetchDust from '../../../hooks/useFetchDust';
+import useFetchAllUser from '../../../hooks/useFetchAllUser';
 import {getToday, getTime} from '../../../utils/DATE';
 import {images, colors} from '../../../styles/globalStyles';
 import {
@@ -23,7 +24,7 @@ import {
 } from '../home.styled';
 
 const WeatherBoard = () => {
-  const [userLocation, setUserLocation] = useState({});
+  const [userLocation, setUserLocation] = useState({ latitude : 37.488752 ,  longitude : 126.979253});
 
   useEffect(() => {
     fetchAsyncLocation();
@@ -53,8 +54,6 @@ const WeatherBoard = () => {
     userLocation.latitude,
   );
 
-  //  TODO : 미세먼지 지역구로 찾아올 수 있게 utils
-  // 전국, 서울, 부산, 대구, 인천, 광주, 대전, 울산, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주, 세종
   const {dust, dustErr} = useFetchDust(
     userLocation.longitude,
     userLocation.latitude,
@@ -97,9 +96,9 @@ const WeatherBoard = () => {
       <WeatherCard>
         <TitleArea>
           <IconImage source={images.sort} width={'48px'} />
-          {/* <AreaName>
+          <AreaName>
             {userGeo ? userGeo?.documents[0].address_name : 'Loading'}
-          </AreaName> */}
+          </AreaName>
           <IconImage source={images.right} width={'48px'} />
         </TitleArea>
 

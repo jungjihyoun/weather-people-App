@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react';
 import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import UploadContainer from './container/UploadContainer'
 
 export const UploadScreen = () => {
   return (
-    <>
-      <Text>Upload</Text>
-    </>
+   <UploadContainer />
   );
 };
 

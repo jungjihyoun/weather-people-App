@@ -52,6 +52,10 @@ export const images = {
   cloud_small: require('../assets/cloud_small_icon.png'),
   location_icon: require('../assets/location_icon.png'),
   write_icon: require('../assets/write_icon.png'),
+  face: require('../assets/face.png'),
+  face_soso: require('../assets/face-soso.png'),
+  face_good: require('../assets/face-good.png'),
+  face_bad: require('../assets/face-bad.png'),
 };
 
 export const height = (

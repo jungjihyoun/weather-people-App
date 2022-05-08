@@ -6,10 +6,11 @@ import {
 } from 'react-native';
 import {width, height , fonts} from '../styles/globalStyles';
 
-const WeatherTextInput = () => {
+const WeatherTextInput = ({onSaveTitle}) => {
   return (
     <TextInput style={styles.TextInputWrapper}
                placeholder="제목을 입력해 주세요"
+               onChangeText={onSaveTitle}
     />
   );
 };

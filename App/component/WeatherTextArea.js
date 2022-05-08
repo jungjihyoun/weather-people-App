@@ -6,11 +6,11 @@ import {
 } from 'react-native';
 import {width, height , fonts} from '../styles/globalStyles';
 
-const WeatherTextArea = () => {
+const WeatherTextArea = ({onSaveContent}) => {
   return (
     <TextInput style={styles.WeatherTextArea} multiline={true}
-               placeholder="오늘 날씨이야기나 입고 나간 옷에 대한 의견도 좋아요 :)"/>
-
+               placeholder="오늘 날씨이야기나 입고 나간 옷에 대한 의견도 좋아요 :)"
+               onChangeText={onSaveContent}/>
   );
 };
 

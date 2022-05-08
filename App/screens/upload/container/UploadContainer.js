@@ -1,13 +1,23 @@
 import React, {useEffect , useState} from 'react';
 import {View , Text, StyleSheet , TouchableWithoutFeedback} from 'react-native';
 import { launchImageLibrary} from 'react-native-image-picker';
+import usePostRecord from '../../../hooks/usePostRecord'
 import TopSection from '../component/TopSection';
 import ImageSlides from '../component/ImageSlides';
 import UploadInputArea from '../component/UploadInputArea';
 import {Container} from '../Upload.Styled';
+import useSWR, { useSWRConfig } from 'swr'
+import {CREATE_RECORD} from "../../../graphql/Record";
+import {graphqlFetcher} from "../../../utils/fetcher";
 
 const UploadContainer = () => {
+  const { mutate } = useSWRConfig()
+
+
   const [photos , setPhotos] = useState([])
+  const [title , setTitle] = useState('')
+  const [content , setContent] = useState('')
+  console.log(title, content)
 
   const handleOpenGallery = () => {
     setPhotos([])
@@ -26,16 +36,23 @@ const UploadContainer = () => {
     })
   }
 
+  const handlePostRecord = () => {
+    console.log(title , content)
+    mutate(CREATE_RECORD({title: "qwe", content: "테스트 qweqwe"}),graphqlFetcher);
+
+  }
+
   useEffect(() => {
     handleOpenGallery()
   } , [])
 
   return (
     <>
-      <TopSection />
+      <TopSection onPostRecord={handlePostRecord}/>
       <Container>
         <ImageSlides photos={photos} onOpenGallery={handleOpenGallery}/>
-        <UploadInputArea />
+        <UploadInputArea onSaveTitle={setTitle} onSaveContent={setContent}/>
+
         <TouchableWithoutFeedback onPress={()=> handleOpenGallery()}>
           <Text>testOpenClick</Text>
         </TouchableWithoutFeedback>

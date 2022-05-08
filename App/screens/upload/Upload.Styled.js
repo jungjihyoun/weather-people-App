@@ -2,6 +2,7 @@
 import styled from "styled-components/native/dist/styled-components.native.esm";
 import {Image, ScrollView, Text, View } from "react-native";
 import {colors, fonts, height , width} from "../../styles/globalStyles";
+import {TouchableOpacity} from "react-native-gesture-handler";
 
 export const Container = styled(ScrollView)`
   height: 100%;
@@ -9,7 +10,7 @@ export const Container = styled(ScrollView)`
   background: ${colors.white};
 `;
 
-export const TopLayout = styled(View)`
+export const TopLayout = styled(TouchableOpacity)`
   width: 100%;
   height: ${height * 120}px;
   display: flex;
@@ -40,3 +41,42 @@ export const ImageWrapper = styled(View)`
   align-items: center;
   background-color: #97CAE5
 `;
+
+// DetailRecord
+export const DetailRecordWrapper = styled(View)`
+  background: #F7F7F7;
+  width: 343px;
+  height: 147px;
+  border-radius: 8px;
+`;
+
+export const HorizontalLine = styled(View)`
+  border-bottom-width: 1px;
+  border-bottom-color: #DFDFDF;
+`
+
+export const DetailRecordTitle = styled(View)`
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  padding-left: 8px;
+  align-items: center;
+`
+
+export const DetailInputArea = styled(View)`
+  height: 89px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+`
+
+export const DetailInput = styled(View)`
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  height: 90px;
+  width: 100px;
+  justify-content: space-around; 
+  align-items: center;
+`

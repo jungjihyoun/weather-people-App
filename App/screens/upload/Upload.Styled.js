@@ -2,7 +2,7 @@
 import styled from "styled-components/native/dist/styled-components.native.esm";
 import {Image, ScrollView, Text, View } from "react-native";
 import {colors, fonts, height , width} from "../../styles/globalStyles";
-import {TouchableOpacity} from "react-native-gesture-handler";
+import {TouchableOpacity , TouchableWithoutFeedback} from "react-native-gesture-handler";
 
 export const Container = styled(ScrollView)`
   height: 100%;
@@ -79,4 +79,57 @@ export const DetailInput = styled(View)`
   width: 100px;
   justify-content: space-around; 
   align-items: center;
+`
+
+
+
+export const CloseHorizontal = styled(View)`
+  width: 40px;
+  border-bottom-width: 4px;
+  border-bottom-color: #111111;
+  border-radius: 100px;
+  margin-top: 32px;
+`
+
+// export const OutfitChoice = styled(View)`
+//     width: 108px;
+//     height: 36px;
+//     border-width: 1px;
+//     border-radius: 20px;
+//     border-style: solid;
+//     border-color: ${colors.black};
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     ${ChoiceText} {
+//       color: ${colors.black};
+//     }
+// `
+
+export const DetailSelectWrapper = styled(TouchableWithoutFeedback)`
+  display: flex;
+  height: 200px;
+  flex-direction: column;
+  justify-content: space-evenly; 
+  align-items: center;
+  margin: 0 16px 0 16px;
+`
+export const ChoiceText = styled(Text)`
+    font-family: ${fonts.YdeB};
+    font-weight: 700;
+    font-size: 14px;
+    color: ${(props) => props.choicedFontColor};
+`
+
+export const OutfitChoice = styled(View)`
+    width: 108px;
+    height: 36px;
+    border-width: 1px;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: ${colors.black};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: ${(props) => props.choicedBackground};
 `

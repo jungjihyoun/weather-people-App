@@ -7,7 +7,7 @@ import WeatherSelect from "@/component/WeatherSelect";
 import WeatherTextArea from "@/component/WeatherTextArea";
 import DetailRecord from "./DetailRecords";
 
-const UploadInputArea = ({onSaveTitle , onSaveContent}) => {
+const UploadInputArea = ({onSaveTitle , onSaveContent , onSaveOuter , onSaveTop , onSaveBottom , onSaveOutfit , myOutfits}) => {
   return (
     <View style={styles.UploadInputArea}>
       <InputTitle icon={images.location_icon} title="동네 설정"/>
@@ -18,7 +18,7 @@ const UploadInputArea = ({onSaveTitle , onSaveContent}) => {
       <WeatherTextArea onSaveContent={onSaveContent}/>
 
       <InputTitle icon={images.cloud_small} title="웨더 기록"/>
-      <DetailRecord />
+      <DetailRecord onSaveOuter={onSaveOuter} onSaveTop={onSaveTop} onSaveBottom={onSaveBottom} onSaveOutfit={onSaveOutfit} myOutfits={myOutfits}/>
     </View>
   );
 };
@@ -26,7 +26,7 @@ const UploadInputArea = ({onSaveTitle , onSaveContent}) => {
 const styles = StyleSheet.create({
   UploadInputArea: {
     marginHorizontal: 17,
-    marginBottom: 100,
+    marginBottom: 20,
   }
 });
 

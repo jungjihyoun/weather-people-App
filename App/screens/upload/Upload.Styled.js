@@ -91,21 +91,6 @@ export const CloseHorizontal = styled(View)`
   margin-top: 32px;
 `
 
-// export const OutfitChoice = styled(View)`
-//     width: 108px;
-//     height: 36px;
-//     border-width: 1px;
-//     border-radius: 20px;
-//     border-style: solid;
-//     border-color: ${colors.black};
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     ${ChoiceText} {
-//       color: ${colors.black};
-//     }
-// `
-
 export const DetailSelectWrapper = styled(TouchableWithoutFeedback)`
   display: flex;
   height: 200px;

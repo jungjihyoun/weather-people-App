@@ -13,11 +13,15 @@ import {graphqlFetcher} from "../../../utils/fetcher";
 const UploadContainer = () => {
   const { mutate } = useSWRConfig()
 
-
   const [photos , setPhotos] = useState([])
   const [title , setTitle] = useState('')
   const [content , setContent] = useState('')
-  console.log(title, content)
+  const [outer , setOuter] = useState('')
+  const [top , setTop] = useState('')
+  const [bottom , setBottom] = useState('')
+  const [myOutfits , setMyOutfits] = useState(null)
+
+  console.log(title, content, outer , top , bottom , myOutfits)
 
   const handleOpenGallery = () => {
     setPhotos([])
@@ -37,25 +41,24 @@ const UploadContainer = () => {
   }
 
   const handlePostRecord = () => {
-    console.log(title , content)
     mutate(CREATE_RECORD({title: "qwe", content: "테스트 qweqwe"}),graphqlFetcher);
-
   }
 
-  useEffect(() => {
-    handleOpenGallery()
-  } , [])
+  // useEffect(() => {
+  //   handleOpenGallery()
+  // } , [])
 
   return (
     <>
       <TopSection onPostRecord={handlePostRecord}/>
       <Container>
         <ImageSlides photos={photos} onOpenGallery={handleOpenGallery}/>
-        <UploadInputArea onSaveTitle={setTitle} onSaveContent={setContent}/>
+        <UploadInputArea onSaveTitle={setTitle} onSaveContent={setContent}
+                         onSaveOuter={setOuter} onSaveTop={setTop} onSaveBottom={setBottom} onSaveOutfit={setMyOutfits} myOutfits={myOutfits}/>
 
-        <TouchableWithoutFeedback onPress={()=> handleOpenGallery()}>
-          <Text>testOpenClick</Text>
-        </TouchableWithoutFeedback>
+        {/*<TouchableWithoutFeedback onPress={()=> handleOpenGallery()}>*/}
+        {/*  <Text>testOpenClick</Text>*/}
+        {/*</TouchableWithoutFeedback>*/}
       </Container>
     </>
   );

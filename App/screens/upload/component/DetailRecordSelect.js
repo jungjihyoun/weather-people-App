@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {StyleSheet , Text , Image , View } from 'react-native'
 import {TouchableOpacity} from "react-native-gesture-handler";
 import WeatherModal from '@/component/WeatherModal'
-import {DetailInputArea, DetailInput , DetailSelectWrapper , CloseHorizontal} from '../Upload.Styled.js'
+import {DetailInputArea, DetailInput , DetailSelectWrapper , CloseHorizontal , OutfitChoice , ChoiceText} from '../Upload.Styled.js'
 import {images , fonts , height , colors} from "@/styles/globalStyles";
 
 const DetailRecordSelect = ({title}) => {
   const [isModalOpen , setIsModalOpen] = useState(false);
+  const [ myOutfit , setMyOutfit ] = useState(null);
 
   return (
     <>
@@ -24,19 +25,25 @@ const DetailRecordSelect = ({title}) => {
           <Text style={styles.selectTitle}>오늘 날씨와 내 아웃핏은?</Text>
 
           <DetailInputArea>
-            <DetailSelectWrapper>
+            <DetailSelectWrapper onPress={() => setMyOutfit(0)}>
               <Image style={styles.icon} source={images.face_bad}/>
-              <View style={styles.choiceLook}><Text style={styles.choiceText}>별로예요</Text></View>
+              <OutfitChoice choicedBackground={myOutfit === 0 ? 'black' : 'white'}>
+                <ChoiceText choicedFontColor={myOutfit === 0 ? 'white' : 'black'}>별로예요</ChoiceText>
+              </OutfitChoice>
             </DetailSelectWrapper>
 
-            <DetailSelectWrapper>
+            <DetailSelectWrapper onPress={() => setMyOutfit(1)}>
               <Image style={styles.icon} source={images.face_soso}/>
-              <View style={styles.choiceLook}><Text style={styles.choiceText}>보통이에요</Text></View>
+              <OutfitChoice choicedBackground={myOutfit === 1 ? 'black' : 'white'}>
+                <ChoiceText choicedFontColor={myOutfit === 1 ? 'white' : 'black'}>보통이에요</ChoiceText>
+              </OutfitChoice>
             </DetailSelectWrapper>
 
-            <DetailSelectWrapper>
+            <DetailSelectWrapper onPress={() => setMyOutfit(2)}>
               <Image style={styles.icon} source={images.face_good}/>
-              <View style={styles.choiceLook}><Text style={styles.choiceText}>완전 찰떡!</Text></View>
+              <OutfitChoice choicedBackground={myOutfit === 2 ? 'black' : 'white'}>
+                <ChoiceText choicedFontColor={myOutfit === 2 ? 'white' : 'black'}>완전 찰떡!</ChoiceText>
+              </OutfitChoice>
             </DetailSelectWrapper>
           </DetailInputArea>
 
@@ -85,23 +92,27 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     alignItems:'center'
   },
-  choiceLook:{
-    width: 108,
-    height: 36,
-    borderWidth: 1,
-    borderRadius: 20,
-    borderStyle: 'solid',
-    borderColor: '#111111',
-    display: 'flex',
-    justifyContent:'center',
-    alignItems:'center'
-  },
-  choiceText: {
-    fontFamily: fonts.YdeB,
-    fontWeight: '700',
-    fontSize: 14,
-    color: '#000000',
-  }
+  // outfitChoice:{
+  //   width: 108,
+  //   height: 36,
+  //   borderWidth: 1,
+  //   borderRadius: 20,
+  //   borderStyle: 'solid',
+  //   borderColor: '#111111',
+  //   display: 'flex',
+  //   justifyContent:'center',
+  //   alignItems:'center'
+  // },
+  // choiced: {
+  //   backgroundColor: '#111111',
+  //   color: '#000000'
+  // },
+  // choiceText: {
+  //   fontFamily: fonts.YdeB,
+  //   fontWeight: '700',
+  //   fontSize: 14,
+  //   color: '#000000',
+  // }
 });
 
 export default DetailRecordSelect;

@@ -5,7 +5,7 @@ import WeatherModal from '@/component/WeatherModal'
 import {DetailInputArea, DetailInput , DetailSelectWrapper , CloseHorizontal , OutfitChoice , ChoiceText} from '../Upload.Styled.js'
 import {images , fonts , height , colors} from "@/styles/globalStyles";
 
-const DetailRecordSelect = ({title , onSaveOutfit , myOutfits}) => {
+const DetailRecordSelect = ({title , onSaveOutfits , myOutfits}) => {
   const [isModalOpen , setIsModalOpen] = useState(false);
 
   const handleSelectedIcon = () => {
@@ -36,24 +36,24 @@ const DetailRecordSelect = ({title , onSaveOutfit , myOutfits}) => {
           <Text style={styles.selectTitle}>오늘 날씨와 내 아웃핏은?</Text>
 
           <DetailInputArea>
-            <DetailSelectWrapper onPress={() => onSaveOutfit(0)}>
+            <DetailSelectWrapper onPress={() => onSaveOutfits(0)}>
               <Image style={styles.icon} source={images.face_bad}/>
-              <OutfitChoice choicedBackground={myOutfits === 0 ? 'black' : 'white'}>
-                <ChoiceText choicedFontColor={myOutfits === 0 ? 'white' : 'black'}>별로예요</ChoiceText>
+              <OutfitChoice choicedBackground={myOutfits.score === 0 ? 'black' : 'white'}>
+                <ChoiceText choicedFontColor={myOutfits.score === 0 ? 'white' : 'black'}>별로예요</ChoiceText>
               </OutfitChoice>
             </DetailSelectWrapper>
 
-            <DetailSelectWrapper onPress={() => onSaveOutfit(1)}>
+            <DetailSelectWrapper onPress={() => onSaveOutfits(1)}>
               <Image style={styles.icon} source={images.face_soso}/>
-              <OutfitChoice choicedBackground={myOutfits === 1 ? 'black' : 'white'}>
-                <ChoiceText choicedFontColor={myOutfits === 1 ? 'white' : 'black'}>보통이에요</ChoiceText>
+              <OutfitChoice choicedBackground={myOutfits.score === 1 ? 'black' : 'white'}>
+                <ChoiceText choicedFontColor={myOutfits.score === 1 ? 'white' : 'black'}>보통이에요</ChoiceText>
               </OutfitChoice>
             </DetailSelectWrapper>
 
-            <DetailSelectWrapper onPress={() => onSaveOutfit(2)}>
+            <DetailSelectWrapper onPress={() => onSaveOutfits(2)}>
               <Image style={styles.icon} source={images.face_good}/>
-              <OutfitChoice choicedBackground={myOutfits === 2 ? 'black' : 'white'}>
-                <ChoiceText choicedFontColor={myOutfits === 2 ? 'white' : 'black'}>완전 찰떡!</ChoiceText>
+              <OutfitChoice choicedBackground={myOutfits.score === 2 ? 'black' : 'white'}>
+                <ChoiceText choicedFontColor={myOutfits.score === 2 ? 'white' : 'black'}>완전 찰떡!</ChoiceText>
               </OutfitChoice>
             </DetailSelectWrapper>
           </DetailInputArea>

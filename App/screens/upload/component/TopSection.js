@@ -1,11 +1,11 @@
 import React from 'react';
-import {Text , StyleSheet} from 'react-native'
-import {images , fonts} from '../../../styles/globalStyles';
-import {IconImage, TopLayout, ImageWrapper, IconText} from '../Upload.Styled';
+import {StyleSheet, Text} from 'react-native'
+import {fonts, images} from '../../../styles/globalStyles';
+import {IconImage, TopLayout} from '../Upload.Styled';
 
-const TopSection = () => {
+const TopSection = ({onPostRecord}) => {
   return (
-    <TopLayout>
+    <TopLayout onPress={()=> {onPostRecord()}}>
       <IconImage source={images.right} width='48px'/>
       <Text style={styles.menu_title}>게시물 업로드</Text>
       <Text style={styles.menu_successBtn}>완료</Text>

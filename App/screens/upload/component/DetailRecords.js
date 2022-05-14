@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet , View , Text} from 'react-native'
+import {StyleSheet, Text} from 'react-native'
 import DetailRecordText from './DetailRecordText'
 import DetailRecordSelect from './DetailRecordSelect'
-import {DetailRecordWrapper , HorizontalLine , DetailInputArea , DetailRecordTitle , DetailInput} from '../Upload.Styled.js'
-import {images , fonts} from "../../../styles/globalStyles";
+import {DetailInputArea, DetailRecordTitle, DetailRecordWrapper, HorizontalLine} from '../Upload.Styled.js'
+import {fonts} from "../../../styles/globalStyles";
 
-const DetailRecords = () => {
+const DetailRecords = ({onSaveOutfit , myOutfits}) => {
   return (
     <DetailRecordWrapper>
       <DetailRecordTitle>
@@ -15,10 +15,10 @@ const DetailRecords = () => {
       <HorizontalLine />
 
       <DetailInputArea>
-        <DetailRecordText title="외투"/>
-        <DetailRecordText title="상의"/>
-        <DetailRecordText title="하의"/>
-        <DetailRecordSelect title="내 평가"/>
+        <DetailRecordText title="외투" myOutfits={myOutfits} onSaveOutfits={e => onSaveOutfit((state) => ({...state , coat:e}))}/>
+        <DetailRecordText title="상의" myOutfits={myOutfits} onSaveOutfits={e => onSaveOutfit((state) => ({...state , top:e}))}/>
+        <DetailRecordText title="하의" myOutfits={myOutfits} onSaveOutfits={e => onSaveOutfit((state) => ({...state , bottom:e}))}/>
+        <DetailRecordSelect title="내 평가" myOutfits={myOutfits} onSaveOutfits={e => onSaveOutfit((state) => ({...state , score:e}))}/>
       </DetailInputArea>
     </DetailRecordWrapper>
   );

@@ -3,11 +3,11 @@ import {StyleSheet , Text , TextInput , View} from 'react-native'
 import {DetailInput} from '../Upload.Styled.js'
 import {fonts} from "@/styles/globalStyles";
 
-const DetailRecordText = ({title , onChangeText }) => (
+const DetailRecordText = ({title , onSaveOutfits}) => (
   <DetailInput>
     <Text style={styles.titleText}>{title}</Text>
     <View  style={styles.alignWrapper}>
-      <TextInput style={styles.inputText} placeholder="입력" onChangeText={onChangeText}/>
+      <TextInput style={styles.inputText} placeholder="입력" onChangeText={(text) => onSaveOutfits(text)}/>
     </View>
   </DetailInput>
 )

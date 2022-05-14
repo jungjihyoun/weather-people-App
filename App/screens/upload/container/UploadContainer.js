@@ -1,14 +1,12 @@
-import React, {useEffect , useState} from 'react';
-import {View , Text, StyleSheet , TouchableWithoutFeedback} from 'react-native';
-import { launchImageLibrary} from 'react-native-image-picker';
-import usePostRecord from '../../../hooks/usePostRecord'
+import React, {useState , useEffect} from 'react';
+import {StyleSheet} from 'react-native';
+import {launchImageLibrary} from 'react-native-image-picker';
 import TopSection from '../component/TopSection';
 import ImageSlides from '../component/ImageSlides';
 import UploadInputArea from '../component/UploadInputArea';
 import {Container} from '../Upload.Styled';
-import useSWR, { useSWRConfig } from 'swr'
+import {useSWRConfig} from 'swr'
 import {CREATE_RECORD} from "../../../graphql/Record";
-import {graphqlFetcher} from "../../../utils/fetcher";
 
 const UploadContainer = () => {
   const { mutate } = useSWRConfig()
@@ -16,16 +14,9 @@ const UploadContainer = () => {
   const [photos , setPhotos] = useState([])
   const [title , setTitle] = useState('')
   const [content , setContent] = useState('')
-  const [outer , setOuter] = useState('')
-  const [top , setTop] = useState('')
-  const [bottom , setBottom] = useState('')
-  const [myOutfits , setMyOutfits] = useState(null)
-
-  console.log(title, content, outer , top , bottom , myOutfits)
+  const [myOutfits , setMyOutfits] = useState({coat : '' , top : '' , bottom : '' , score : null})
 
   const handleOpenGallery = () => {
-    setPhotos([])
-
     launchImageLibrary({selectionLimit : 0 , saveToPhotos : false}).then(data => {
       data.assets.length && data.assets.map((e)=>{
         setPhotos([
@@ -41,24 +32,33 @@ const UploadContainer = () => {
   }
 
   const handlePostRecord = () => {
-    mutate(CREATE_RECORD({title: "qwe", content: "테스트 qweqwe"}),graphqlFetcher);
+    fetch('http://localhost:3000/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query: CREATE_RECORD( title , content , myOutfits),
+        variables: {
+          now: new Date().toISOString(),
+        },
+      }),
+    })
+      .then((res) => res.json())
+      .then((result) => console.log(result));
   }
 
-  // useEffect(() => {
-  //   handleOpenGallery()
-  // } , [])
+  useEffect(() => {
+    handleOpenGallery()
+  } , [])
 
   return (
     <>
       <TopSection onPostRecord={handlePostRecord}/>
       <Container>
-        <ImageSlides photos={photos} onOpenGallery={handleOpenGallery}/>
         <UploadInputArea onSaveTitle={setTitle} onSaveContent={setContent}
-                         onSaveOuter={setOuter} onSaveTop={setTop} onSaveBottom={setBottom} onSaveOutfit={setMyOutfits} myOutfits={myOutfits}/>
-
-        {/*<TouchableWithoutFeedback onPress={()=> handleOpenGallery()}>*/}
-        {/*  <Text>testOpenClick</Text>*/}
-        {/*</TouchableWithoutFeedback>*/}
+                         onSaveOutfit={setMyOutfits} myOutfits={myOutfits}
+                         photos={photos} onOpenGallery={handleOpenGallery}/>
       </Container>
     </>
   );

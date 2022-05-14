@@ -17,7 +17,8 @@ export const TopLayout = styled(TouchableOpacity)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: ${height * 56}px 22px 0 20px;
+  padding: ${height * 56}px 22px 0 5px;
+  background: ${colors.white};
 `;
 
 export const IconImage = styled(Image)`

@@ -1,45 +1,58 @@
 import React from 'react';
-import {StyleSheet , View , Image} from 'react-native'
-import Swiper from 'react-native-swiper';
+import {StyleSheet , View , Image , Text } from 'react-native'
+import {TouchableWithoutFeedback} from "react-native-gesture-handler";
+import {images} from "../../../styles/globalStyles";
 
 const ImageSlides = ({photos , onOpenGallery}) => {
+  console.log(photos)
   return (
-    <View onPress={() => onOpenGallery()} style={styles.slide} >
-      <Swiper showsButtons={false} showsPagination={true}>
-          {
-            photos.length > 0 ?
-              photos.map((e , index)=>{
-                return <Image key={index} resizeMode="stretch" style={styles.ImageWrapper} source={{uri: e.uri}}/>
-              }) : <View />
-          }
-      </Swiper>
+    <View style={styles.slide} >
+      <TouchableWithoutFeedback style={styles.imagePlusButton} onPress={() => onOpenGallery()}>
+        <Image style={{width: 32 , height : 32}} source={images.camera}/>
+        <Text style={styles.countText}>3/3</Text>
+      </TouchableWithoutFeedback>
+      {photos.length > 0 &&  photos.map((e , index)=> (
+        <View style={styles.imageCard} >
+        <Image key={index} resizeMode="stretch" style={styles.image} source={{uri: e.uri}}/>
+      </View>
+      ))}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   slide: {
-    backgroundColor: '#9DD6EB',
-    height: 470
+    display : 'flex',
+    flexDirection : 'row',
+    marginVertical: 16,
   },
-  ImageWrapper: {
-    height: 470
+  imagePlusButton:{
+    display : 'flex',
+    flexDirection : 'column',
+    justifyContent: 'center',
+    alignItems:'center',
+    height: 78,
+    width: 78,
+    backgroundColor: '#F7F7F7',
+    borderRadius: 8,
   },
-  menu_title: {
-    // fontFamily: fonts.suitB,
-    color: '#111111',
-    textAlign: "center",
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight:22,
+  imageCard: {
+    height: 78,
+    width: 78,
+    backgroundColor: '#F7F7F7',
+    borderRadius: 8,
+    marginRight: 10,
   },
-  menu_successBtn: {
-    // fontFamily: fonts.suitB,
-    color: '#A5A5A5',
-    textAlign: "center",
-    fontSize: 18,
-    fontWeight: '700',
-    lineHeight:22,
+  image: {
+    height: 78,
+    width: 78,
+    borderRadius: 8,
+  },
+  countText: {
+    fontFamily: fonts.suitB,
+    fontSize: 12,
+    textAlign: 'center',
+    color: '#62B3FF',
   }
 });
 

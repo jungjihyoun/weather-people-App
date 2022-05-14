@@ -1,10 +1,6 @@
-import React, {useRef, useState, useEffect, useLayoutEffect} from 'react';
-import {
-  View,
-  TextInput,
-  Image, StyleSheet,
-} from 'react-native';
-import {width, height , fonts} from '../styles/globalStyles';
+import React from 'react';
+import {StyleSheet, TextInput,} from 'react-native';
+import {fonts, width} from '../styles/globalStyles';
 
 const WeatherTextArea = ({onSaveContent}) => {
   return (

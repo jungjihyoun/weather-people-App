@@ -1,18 +1,10 @@
-import React, {useRef, useState, useEffect, useLayoutEffect} from 'react';
-import {
-  View,
-  Text,
-  Image, StyleSheet,
-} from 'react-native';
-import {width, height , fonts} from '../styles/globalStyles';
+import React from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {fonts} from '../styles/globalStyles';
 
 const InputTitle = ({icon, title}) => {
   return (
     <View style={styles.InputTitleArea}>
-      <Image
-        source={icon}
-        style={styles.InputTitleIcon}
-      />
       <Text style={styles.InputTitleText}>{title}</Text>
     </View>
   );

@@ -1,31 +1,31 @@
 import React, {useState , useEffect} from 'react';
 import {StyleSheet} from 'react-native';
-import {launchImageLibrary} from 'react-native-image-picker';
+import {useSWRConfig} from 'swr'
+import {launchImageLibrary  } from 'react-native-image-picker';
+import {CREATE_RECORD} from "@/graphql/Record";
+import {IAsset , IMyOutfits} from '@/type/upload'
 import TopSection from '../component/TopSection';
-import ImageSlides from '../component/ImageSlides';
 import UploadInputArea from '../component/UploadInputArea';
 import {Container} from '../Upload.Styled';
-import {useSWRConfig} from 'swr'
-import {CREATE_RECORD} from "../../../graphql/Record";
 
 const UploadContainer = () => {
   const { mutate } = useSWRConfig()
 
-  const [photos , setPhotos] = useState([])
+  const [photos , setPhotos] = useState<IAsset[]>([])
   const [title , setTitle] = useState('')
   const [content , setContent] = useState('')
-  const [myOutfits , setMyOutfits] = useState({coat : '' , top : '' , bottom : '' , score : null})
+  const [myOutfits , setMyOutfits] = useState<IMyOutfits>({coat : '' , top : '' , bottom : '' , score : null})
 
   const handleOpenGallery = () => {
-    launchImageLibrary({selectionLimit : 0 , saveToPhotos : false}).then(data => {
-      data.assets.length && data.assets.map((e)=>{
+    if (photos.length >= 3) {
+      // TODO : toast message
+      return 0
+    }
+    launchImageLibrary({mediaType : 'photo' , selectionLimit : 3 } ).then(data => {
+      data.assets && data.assets.length && data.assets.map((e)=>{
         setPhotos([
           ...photos,
-          {
-            uri: e.uri,
-            type: e.type,
-            name: e.fileName,
-          }
+          ...data.assets!
         ]);
       })
     })
@@ -58,7 +58,7 @@ const UploadContainer = () => {
       <Container>
         <UploadInputArea onSaveTitle={setTitle} onSaveContent={setContent}
                          onSaveOutfit={setMyOutfits} myOutfits={myOutfits}
-                         photos={photos} onOpenGallery={handleOpenGallery}/>
+                         photos={photos} setPhotos={setPhotos} onOpenGallery={handleOpenGallery}/>
       </Container>
     </>
   );

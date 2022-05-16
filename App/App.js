@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import useSWR, {SWRConfig} from 'swr';
-import {StyleSheet, Text} from 'react-native';
-import {ApolloProvider} from '@apollo/client';
-import {client} from './apollo/client';
+import React, {useState} from 'react';
+import {SWRConfig} from 'swr';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AuthStack from './navigation/AuthStack';

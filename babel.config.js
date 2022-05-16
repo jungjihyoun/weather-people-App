@@ -5,8 +5,7 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   plugins: [
-    [
-      'module-resolver',
+    [ 'module-resolver',
       {
         root: ['./App'],
         extensions: [

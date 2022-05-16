@@ -59,6 +59,7 @@ export const images = {
   face_bad: require('../assets/face-bad.png'),
   camera: require('../assets/camera.png'),
   delete_icon: require('../assets/delete_icon.png'),
+  close_icon: require('../assets/close.png'),
 };
 
 export const height = (

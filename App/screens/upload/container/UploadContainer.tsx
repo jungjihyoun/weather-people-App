@@ -1,9 +1,9 @@
 import React, {useState , useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 import {useSWRConfig} from 'swr'
-import {launchImageLibrary  } from 'react-native-image-picker';
+import {launchImageLibrary} from 'react-native-image-picker';
 import {CREATE_RECORD} from "@/graphql/Record";
-import {IAsset , IMyOutfits} from '@/type/upload'
+import {IAsset, IMyOutfits} from '@/type/upload'
 import TopSection from '../component/TopSection';
 import UploadInputArea from '../component/UploadInputArea';
 import {Container} from '../Upload.Styled';

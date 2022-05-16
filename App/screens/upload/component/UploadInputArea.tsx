@@ -1,12 +1,12 @@
 import React, {Dispatch, SetStateAction} from 'react';
 import {StyleSheet, View} from 'react-native'
-import {images} from "@/styles/globalStyles";
 import InputTitle from "@/component/InputTitle";
 import WeatherTextInput from "@/component/WeatherTextInput";
 import WeatherSelect from "@/component/WeatherSelect";
 import WeatherTextArea from "@/component/WeatherTextArea";
 import DetailRecord from "./DetailRecords";
 import ImageSlides from "./ImageSlides";
+import {images} from "@/styles/globalStyles";
 import {IAsset , IMyOutfits} from '@/type/upload'
 
 interface IPros {

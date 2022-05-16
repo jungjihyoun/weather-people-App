@@ -1,12 +1,14 @@
-import React from 'react';
-import {StyleSheet , View , Image , Text} from 'react-native'
-import {TouchableWithoutFeedback , TouchableOpacity} from "react-native-gesture-handler";
-import {images , fonts } from "@/styles/globalStyles";
+import React, {useState} from 'react';
+import {Image, Modal, StyleSheet, Text, View} from 'react-native'
+import {TouchableWithoutFeedback} from "react-native-gesture-handler";
+import ImageViewer from 'react-native-image-zoom-viewer';
+import {fonts , images} from "@/styles/globalStyles";
 
 const ImageSlides = ({photos , setPhotos , onOpenGallery}) => {
+  const [visible, setVisible] = useState(false);
+
   const handleDeletePhoto = (uri) => {
     setPhotos(photos.filter((del)=>(del.uri !== uri)))
-    console.log(uri)
   }
 
   return (
@@ -17,15 +19,20 @@ const ImageSlides = ({photos , setPhotos , onOpenGallery}) => {
       </TouchableWithoutFeedback>
 
       {photos.length > 0 &&  photos.map((e , index)=> (
-        <View style={styles.imageCard}>
+        <TouchableWithoutFeedback onPress={() => setVisible(true)} style={styles.imageCard}>
           <Image key={index} resizeMode="stretch" style={styles.image} source={{uri: e.uri}}/>
           <View style={styles.deleteButton} >
             <TouchableWithoutFeedback style={{zIndex : 99 , width: 30 , height : 30}} onPress={() => {handleDeletePhoto(e.uri)}}>
               <Image style={{width: 16 , height : 16}} source={images.delete_icon}/>
             </TouchableWithoutFeedback>
           </View>
-        </View>
+        </TouchableWithoutFeedback>
       ))}
+      <Modal visible={visible} transparent={true}>
+        <ImageViewer imageUrls={photos.map((e)=>{
+          return {url : e.uri }
+        })} enableSwipeDown={true} onSwipeDown={() => setVisible(false)}/>
+      </Modal>
     </View>
   );
 };

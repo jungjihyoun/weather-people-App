@@ -11,7 +11,7 @@ import {Container} from '../Upload.Styled';
 
 const UploadContainer = () => {
   const {mutate} = useSWRConfig();
-
+  const [isFullFill, setIsFullFill] = useState(false);
   const [photos, setPhotos] = useState<IAsset[]>([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -21,7 +21,14 @@ const UploadContainer = () => {
     bottom: '',
     score: null,
   });
-  const [image, setImage] = useState<any>([]);
+
+  useEffect(() => {
+    if (photos.length && title !== '' && content != '') {
+      setIsFullFill(true);
+    } else {
+      setIsFullFill(false);
+    }
+  }, [photos, title, content]);
 
   const handleOpenGallery = () => {
     if (photos.length >= 3) {
@@ -32,9 +39,9 @@ const UploadContainer = () => {
       data.assets &&
         data.assets.length &&
         data.assets.map(e => {
-          setPhotos([...photos, ...data.assets!]);
+          // setPhotos([...photos, ...data.assets!]);
 
-          setImage((state: any) => [
+          setPhotos((state: any) => [
             ...state,
             {
               uri: e.uri,
@@ -48,8 +55,8 @@ const UploadContainer = () => {
 
   const handlePostImage = async (id: string) => {
     var formData = new FormData();
-    if (image !== []) {
-      image.map(e => {
+    if (photos !== []) {
+      photos.map(e => {
         formData.append('file', e);
       });
     }
@@ -81,6 +88,8 @@ const UploadContainer = () => {
   };
 
   const handlePostRecord = async () => {
+    if (!isFullFill) return;
+
     await fetch('http://localhost:3000/graphql', {
       method: 'POST',
       headers: {
@@ -103,7 +112,7 @@ const UploadContainer = () => {
 
   return (
     <>
-      <TopSection onPostRecord={handlePostRecord} />
+      <TopSection isFullFill={isFullFill} onPostRecord={handlePostRecord} />
       <Container>
         <UploadInputArea
           onSaveTitle={setTitle}

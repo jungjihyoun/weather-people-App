@@ -207,6 +207,8 @@ export const Outfith2 = styled.Text`
   line-height: 18px;
   color: #808080;
   margin-top: 8px;
+  word-wrap: break-word;
+  white-space: nowrap;
 `;
 
 export const OutfitImage = styled.Image`
@@ -222,6 +224,7 @@ export const OutfitRow = styled(View)`
   flex-direction: row;
   margin: 0 auto 0 0;
   align-items: center;
+  width: 198px;
 `;
 
 export const OutfitColumn = styled(View)`
@@ -250,7 +253,7 @@ export const OutfitImgId = styled(Text)`
 
 export const HotPostLayout = styled(View)`
   background: ${colors.white};
-  height: 382px;
+  height: 432px;
   width: 100%;
   min-height: 400px;
 `;
@@ -291,14 +294,12 @@ export const PureRow = styled(View)`
 `;
 
 export const HotPostContent = styled(View)`
-  margin: 0 auto;
+  margin-left: 20px;
   max-width: ${width * 250}px;
-  width: 85%;
   min-height: 70px;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `;
 
 export const HotPostContentTitle = styled(Text)`

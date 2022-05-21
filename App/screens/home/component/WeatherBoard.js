@@ -24,7 +24,10 @@ import {
 } from '../home.styled';
 
 const WeatherBoard = () => {
-  const [userLocation, setUserLocation] = useState({ latitude : 37.488752 ,  longitude : 126.979253});
+  const [userLocation, setUserLocation] = useState({
+    latitude: 37.488752,
+    longitude: 126.979253,
+  });
 
   useEffect(() => {
     fetchAsyncLocation();

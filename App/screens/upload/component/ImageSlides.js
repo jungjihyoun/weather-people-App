@@ -4,12 +4,16 @@ import {TouchableWithoutFeedback} from "react-native-gesture-handler";
 import ImageViewer from 'react-native-image-zoom-viewer';
 import {fonts , images} from "@/styles/globalStyles";
 
+
 const ImageSlides = ({photos , setPhotos , onOpenGallery}) => {
   const [visible, setVisible] = useState(false);
 
   const handleDeletePhoto = (uri) => {
     setPhotos(photos.filter((del)=>(del.uri !== uri)))
   }
+
+
+
 
   return (
     <View style={styles.slide}>
@@ -19,7 +23,7 @@ const ImageSlides = ({photos , setPhotos , onOpenGallery}) => {
       </TouchableWithoutFeedback>
 
       {photos.length > 0 &&  photos.map((e , index)=> (
-        <TouchableWithoutFeedback onPress={() => setVisible(true)} style={styles.imageCard}>
+        <TouchableWithoutFeedback onPress={() => setVisible(true)} style={styles.imageCard} key={index}>
           <Image key={index} resizeMode="stretch" style={styles.image} source={{uri: e.uri}}/>
           <View style={styles.deleteButton} >
             <TouchableWithoutFeedback style={{zIndex : 99 , width: 30 , height : 30}} onPress={() => {handleDeletePhoto(e.uri)}}>

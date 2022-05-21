@@ -25,7 +25,7 @@
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-link": "^1.2.14",
     "apollo-meteor-integration": "github:meteor/apollo",
-    "axios": "^0.26.1",
+    "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "dotenv": "^16.0.0",
     "eslint-config-prettier": "^8.5.0",

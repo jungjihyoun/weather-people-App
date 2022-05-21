@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import {Image, View} from 'react-native';
 import Swiper from 'react-native-swiper';
 import {images} from '../../../styles/globalStyles';
 
@@ -19,44 +19,43 @@ import useFetchRecord from '../../../hooks/userFetchRecord';
 
 const HotPost = () => {
   const {record, recordLoading} = useFetchRecord();
-  console.log('fetch Record => ' , record)
 
   // TODO : 컴포넌트 분리
   const swiperInner = () => {
-    let pivot = 0
+    let pivot = 0;
     return record.allRecord.map((e, index) => {
-      if (pivot < record.allRecord.length){
-        pivot += 3
+      if (pivot < record.allRecord.length) {
+        pivot += 4;
         return (
-          <>
-            {
-              record.allRecord.map((e, index) => {
-                if ( pivot - 3 <= index && index < pivot) {
-                  return (
-                      <HotPostContent key={`currentPost-${index}`}>
-                        <HotPostContentTitle>{index + 1}</HotPostContentTitle>
+          <View key={`currentPost-group-${index}`}>
+            {record.allRecord.map((e, index) => {
+              if (pivot - 4 <= index && index < pivot) {
+                return (
+                  <HotPostContent key={`currentPost-${index}`}>
+                    <HotPostContentTitle>{index + 1}</HotPostContentTitle>
 
-                        <HotPostUserImage source={images.weather_sunny}/>
+                    <HotPostUserImage source={images.weather_sunny} />
 
-                        <PureColumn>
-                          <HotPostContentTitle ellipsizeMode="tail" numberOfLines={1}>
-                            {e.title}
-                          </HotPostContentTitle>
-                          <PureRow>
-                            <HotPostContentId>@유저아이디</HotPostContentId>
-                            <HotPostContentId>댓글수</HotPostContentId>
-                            <HotPostContentId>좋아요수</HotPostContentId>
-                          </PureRow>
-                        </PureColumn>
-                      </HotPostContent>
-                  );
-                }
-              })
-            }
-          </>
-        )
+                    <PureColumn>
+                      <HotPostContentTitle
+                        ellipsizeMode="tail"
+                        numberOfLines={1}>
+                        {e.title}
+                      </HotPostContentTitle>
+                      <PureRow>
+                        <HotPostContentId>@유저아이디</HotPostContentId>
+                        <HotPostContentId>댓글수</HotPostContentId>
+                        <HotPostContentId>좋아요수</HotPostContentId>
+                      </PureRow>
+                    </PureColumn>
+                  </HotPostContent>
+                );
+              }
+            })}
+          </View>
+        );
       }
-    })
+    });
   };
 
   return (
@@ -69,9 +68,11 @@ const HotPost = () => {
         <Image source={images.cloud} width={'84px'} />
       </HotPostTop>
 
-      <Swiper showsButtons={false} showsPagination={true}>
-        {swiperInner()}
-      </Swiper>
+      {record && (
+        <Swiper showsButtons={false} showsPagination={true}>
+          {swiperInner()}
+        </Swiper>
+      )}
     </HotPostLayout>
   );
 };

@@ -10,23 +10,27 @@ import {images} from '@/styles/globalStyles';
 import {IAsset, IMyOutfits} from '@/type/upload';
 
 interface IPros {
-  myOutfits: IMyOutfits;
+  myOutfits: IMyOutfits | null;
   photos: IAsset[];
+  title: string;
+  content: string;
   onOpenGallery: () => void;
-  setPhotos: Dispatch<SetStateAction<IAsset[]>>;
+  onDeletePhoto: (uri: string) => void;
   onSaveTitle: Dispatch<SetStateAction<string>>;
   onSaveContent: Dispatch<SetStateAction<string>>;
-  onSaveOutfit: Dispatch<SetStateAction<IMyOutfits>>;
+  onSaveMyOutfits: Dispatch<SetStateAction<IMyOutfits | null>>;
 }
 
 const UploadInputArea = ({
-  onSaveTitle,
-  onSaveContent,
-  onSaveOutfit,
+  title,
+  content,
   myOutfits,
   photos,
+  onSaveTitle,
+  onSaveContent,
+  onSaveMyOutfits,
   onOpenGallery,
-  setPhotos,
+  onDeletePhoto,
 }: IPros) => {
   return (
     <View style={styles.UploadInputArea}>
@@ -36,15 +40,15 @@ const UploadInputArea = ({
       <InputTitle icon={images.write_icon} title="글쓰기" />
       <ImageSlides
         photos={photos}
-        setPhotos={setPhotos}
         onOpenGallery={onOpenGallery}
+        onDeletePhoto={onDeletePhoto}
       />
 
-      <WeatherTextInput onSaveTitle={onSaveTitle} />
-      <WeatherTextArea onSaveContent={onSaveContent} />
+      <WeatherTextInput onSaveTitle={onSaveTitle} value={title} />
+      <WeatherTextArea onSaveContent={onSaveContent} value={content} />
 
       <InputTitle icon={images.cloud_small} title="웨더 기록" />
-      <DetailRecord onSaveOutfit={onSaveOutfit} myOutfits={myOutfits} />
+      <DetailRecord onSaveMyOutfits={onSaveMyOutfits} myOutfits={myOutfits} />
     </View>
   );
 };

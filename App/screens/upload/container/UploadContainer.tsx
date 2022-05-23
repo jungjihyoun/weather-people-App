@@ -1,26 +1,35 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {useSWRConfig} from 'swr';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet} from 'react-native';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {CREATE_RECORD, UPDATE_IMAGE} from '@/graphql/Record';
 import {IAsset, IMyOutfits} from '@/type/upload';
 import TopSection from '../component/TopSection';
 import UploadInputArea from '../component/UploadInputArea';
+import WeatherPopup from '@/component/WeatherPopup';
 import {Container} from '../Upload.Styled';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+
+type mainScreenProp = StackNavigationProp<any>;
 
 const UploadContainer = () => {
-  const {mutate} = useSWRConfig();
+  const navigation = useNavigation<mainScreenProp>();
   const [isFullFill, setIsFullFill] = useState(false);
   const [photos, setPhotos] = useState<IAsset[]>([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [myOutfits, setMyOutfits] = useState<IMyOutfits>({
+  const [myOutfits, setMyOutfits] = useState<IMyOutfits | null>({
     coat: '',
     top: '',
     bottom: '',
     score: null,
   });
+  const [popup, setPopup] = useState(false);
+  const [message, setMessage] = useState('');
+
+  // useEffect(() => {
+  //   handleOpenGallery();
+  // }, []);
 
   useEffect(() => {
     if (photos.length && title !== '' && content != '') {
@@ -32,25 +41,28 @@ const UploadContainer = () => {
 
   const handleOpenGallery = () => {
     if (photos.length >= 3) {
-      // TODO : toast message
+      setMessage('최대 3장까지 업로드 할 수 있습니다.');
+      setPopup(true);
       return 0;
     }
     launchImageLibrary({mediaType: 'photo', selectionLimit: 3}).then(data => {
       data.assets &&
-        data.assets.length &&
-        data.assets.map(e => {
-          // setPhotos([...photos, ...data.assets!]);
-
-          setPhotos((state: any) => [
-            ...state,
-            {
-              uri: e.uri,
-              type: e.type,
-              name: e.fileName,
-            },
-          ]);
-        });
+      data.assets.length &&
+      data.assets.map(e => {
+        setPhotos((state: any) => [
+          ...state,
+          {
+            uri: e.uri,
+            type: e.type,
+            name: e.fileName,
+          },
+        ]);
+      });
     });
+  };
+
+  const handleDeletePhoto = (uri: string) => {
+    setPhotos(photos.filter(del => del.uri !== uri));
   };
 
   const handlePostImage = async (id: string) => {
@@ -88,7 +100,11 @@ const UploadContainer = () => {
   };
 
   const handlePostRecord = async () => {
-    if (!isFullFill) return;
+    if (!isFullFill) {
+      setMessage('필수 입력 양식을 채워주세요.');
+      setPopup(true);
+      return;
+    }
 
     await fetch('http://localhost:3000/graphql', {
       method: 'POST',
@@ -103,27 +119,46 @@ const UploadContainer = () => {
       }),
     })
       .then(res => res.json())
-      .then(result => handlePostImage(result.data.createRecord._id));
+      .then(result => handlePostImage(result.data.createRecord._id))
+      .then(() => {
+        setPhotos(prev => []);
+        setTitle(prev => '');
+        setContent(prev => '');
+        setMyOutfits(prev => {
+          return {
+            coat: '',
+            top: '',
+            bottom: '',
+            score: null,
+          };
+        });
+
+        navigation.navigate('FeedScreen');
+      });
   };
 
-  useEffect(() => {
-    handleOpenGallery();
-  }, []);
+  // const alert = () => {
+  //   Alert.alert('웨더피플', '업로드 하시겠습니까?');
+  // };
 
   return (
     <>
       <TopSection isFullFill={isFullFill} onPostRecord={handlePostRecord} />
       <Container>
         <UploadInputArea
+          title={title}
+          content={content}
           onSaveTitle={setTitle}
           onSaveContent={setContent}
-          onSaveOutfit={setMyOutfits}
+          onSaveMyOutfits={setMyOutfits}
           myOutfits={myOutfits}
           photos={photos}
-          setPhotos={setPhotos}
           onOpenGallery={handleOpenGallery}
+          onDeletePhoto={handleDeletePhoto}
         />
       </Container>
+
+      <WeatherPopup message={message} popup={popup} setPopup={setPopup} />
     </>
   );
 };

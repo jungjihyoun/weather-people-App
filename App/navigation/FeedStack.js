@@ -10,7 +10,7 @@ const navOptionHandler = () => ({
 
 const FeedStack = ({navigation, route}) => {
   return (
-    <StackHome.Navigator>
+    <StackHome.Navigator initialRouteName="FeedScreen">
       <StackHome.Screen
         name="FeedScreen"
         component={FeedScreen}

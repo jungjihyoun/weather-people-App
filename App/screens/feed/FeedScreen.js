@@ -1,16 +1,7 @@
-import React, {useEffect} from 'react';
-import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {StyleSheet, Text} from 'react-native';
+import FeedContainer from '@/screens/feed/container/FeedContainer'
 
-export const FeedScreen = () => {
-  return (
-    <>
-      <Text>Feed</Text>
-    </>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 150,
-  },
-});
+export const FeedScreen = () => (
+  <FeedContainer/>
+)

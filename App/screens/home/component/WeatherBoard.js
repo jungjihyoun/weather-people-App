@@ -1,26 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import useShortWeather from '../../../hooks/useShortWeather';
-import useFetchGeo from '../../../hooks/useFetchGeo';
+import useShortWeather from '@/hooks/useShortWeather';
+import useFetchGeo from '@/hooks/useFetchGeo';
 import useFetchDust from '../../../hooks/useFetchDust';
-import useFetchAllUser from '../../../hooks/useFetchAllUser';
-import {getToday, getTime} from '../../../utils/DATE';
-import {images, colors} from '../../../styles/globalStyles';
+import {getTime, getToday} from '@/utils/DATE';
+import {colors, images} from '@/styles/globalStyles';
 import {
-  WeatherCard,
-  TitleArea,
-  IconImage,
-  WeatherImage,
-  Row,
-  Column,
-  CustomText,
-  RowGap,
   AreaName,
-  CommentArea,
-  Divider,
   BottomArea,
+  Column,
+  CommentArea,
+  CustomText,
   DetailItem,
+  Divider,
+  IconImage,
+  Row,
+  RowGap,
+  TitleArea,
   WeatherBoardLayout,
+  WeatherCard,
+  WeatherImage,
 } from '../home.styled';
 
 const WeatherBoard = () => {

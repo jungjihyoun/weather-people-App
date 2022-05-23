@@ -1,22 +1,26 @@
 import React from 'react';
-import {StyleSheet , Text , TextInput , View} from 'react-native'
-import {DetailInput} from '../Upload.Styled.js'
-import {fonts} from "@/styles/globalStyles";
+import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {DetailInput} from '../Upload.Styled.js';
+import {fonts} from '@/styles/globalStyles';
 
-const DetailRecordText = ({title , onSaveOutfits}) => (
+const DetailRecordText = ({title, onSaveMyOutfits}) => (
   <DetailInput>
     <Text style={styles.titleText}>{title}</Text>
-    <View  style={styles.alignWrapper}>
-      <TextInput style={styles.inputText} placeholder="입력" onChangeText={(text) => onSaveOutfits(text)}/>
+    <View style={styles.alignWrapper}>
+      <TextInput
+        style={styles.inputText}
+        placeholder="입력"
+        onChangeText={text => onSaveMyOutfits(text)}
+      />
     </View>
   </DetailInput>
-)
+);
 
 const styles = StyleSheet.create({
   alignWrapper: {
-    display:'flex',
-    alignItems:'center',
-    justifyContent:'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     height: 48,
   },
   titleText: {
@@ -30,7 +34,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 12,
     color: '#111111',
-  }
+  },
 });
 
 export default DetailRecordText;

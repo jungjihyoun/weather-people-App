@@ -1,18 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {KeyboardAvoidingView, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 import {launchImageLibrary} from 'react-native-image-picker';
+import useFetchRecord from "@/hooks/useFetchRecord";
 import {CREATE_RECORD, UPDATE_IMAGE} from '@/graphql/Record';
 import {IAsset, IMyOutfits} from '@/type/upload';
 import TopSection from '../component/TopSection';
 import UploadInputArea from '../component/UploadInputArea';
 import WeatherPopup from '@/component/WeatherPopup';
 import {Container} from '../Upload.Styled';
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
 
 type mainScreenProp = StackNavigationProp<any>;
 
 const UploadContainer = () => {
+  const {mutate} = useFetchRecord();
   const navigation = useNavigation<mainScreenProp>();
   const [isFullFill, setIsFullFill] = useState(false);
   const [photos, setPhotos] = useState<IAsset[]>([]);
@@ -81,7 +83,6 @@ const UploadContainer = () => {
     });
     if (response.ok) {
       let locations = await response.text();
-      console.log(locations);
       await fetch('http://localhost:3000/graphql', {
         method: 'POST',
         headers: {
@@ -132,17 +133,13 @@ const UploadContainer = () => {
             score: null,
           };
         });
-
+        mutate()
         navigation.navigate('FeedScreen');
-      });
+      })
   };
 
-  // const alert = () => {
-  //   Alert.alert('웨더피플', '업로드 하시겠습니까?');
-  // };
-
   return (
-    <>
+    <KeyboardAvoidingView style={styles.rootContainer} behavior="padding" enabled>
       <TopSection isFullFill={isFullFill} onPostRecord={handlePostRecord} />
       <Container>
         <UploadInputArea
@@ -159,11 +156,15 @@ const UploadContainer = () => {
       </Container>
 
       <WeatherPopup message={message} popup={popup} setPopup={setPopup} />
-    </>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  rootContainer: {
+    flex: 1,
+    backgroundColor: "#ffffff"
+  },
   slide: {
     flex: 2,
     justifyContent: 'center',

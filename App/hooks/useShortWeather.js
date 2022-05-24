@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import {fetcher} from '../utils/fetcher';
-import {Short_Weather_API} from '../utils/API';
+import {fetcher} from '@/utils/fetcher';
+import {Short_Weather_API} from '@/utils/API';
 
 export default function useShortWeather(longitude, latitude, date, time) {
   const {data, error} = useSWR(

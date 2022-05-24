@@ -1,7 +1,7 @@
 import React from 'react';
 import {Image, View} from 'react-native';
 import Swiper from 'react-native-swiper';
-import {images} from '../../../styles/globalStyles';
+import {images} from '@/styles/globalStyles';
 
 import {
   HotPostLayout,
@@ -15,10 +15,10 @@ import {
   HotPostContentTitle,
   HotPostContentId,
 } from '../home.styled';
-import useFetchRecord from '../../../hooks/userFetchRecord';
+import useFetchRecord from '@/hooks/useFetchRecord';
 
 const HotPost = () => {
-  const {record, recordLoading} = useFetchRecord();
+  const {record} = useFetchRecord();
 
   // TODO : 컴포넌트 분리
   const swiperInner = () => {

@@ -1,7 +1,7 @@
 //TopSection
 import styled from "styled-components/native/dist/styled-components.native.esm";
 import {Image, ScrollView, Text, View } from "react-native";
-import {colors, fonts, height , width} from "../../styles/globalStyles";
+import {colors, fonts, height } from "@/styles/globalStyles";
 import {TouchableOpacity , TouchableWithoutFeedback} from "react-native-gesture-handler";
 
 export const Container = styled(ScrollView)`

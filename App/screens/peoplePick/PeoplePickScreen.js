@@ -1,10 +1,11 @@
-import React, {useEffect} from 'react';
-import {Button, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
+import {ErrorScreen} from '../error/ErrorScreen'
 
 export const PeoplePickScreen = () => {
   return (
     <>
-      <Text>peoplePickScreen</Text>
+      <ErrorScreen />
     </>
   );
 };

@@ -296,10 +296,11 @@ export const PureRow = styled(View)`
 export const HotPostContent = styled(View)`
   margin-left: 20px;
   max-width: ${width * 250}px;
-  min-height: 70px;
+  min-height:60px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  align-items: center;
 `;
 
 export const HotPostContentTitle = styled(Text)`

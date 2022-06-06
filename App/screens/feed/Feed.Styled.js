@@ -1,9 +1,9 @@
 import styled from "styled-components/native/dist/styled-components.native.esm";
-import {Image, ScrollView, Text, View } from "react-native";
+import {Image, ScrollView, Text, View , Button } from "react-native";
 import {TouchableOpacity} from "react-native-gesture-handler";
 import {colors, fonts, height , width} from "@/styles/globalStyles";
 
-export const Container = styled(ScrollView)`
+export const ScrollContainer = styled(ScrollView)`
   height: 100%;
   width: 100%;
   background: ${colors.white};
@@ -25,6 +25,12 @@ export const IconImage = styled(Image)`
   transform: rotate(180deg);
 `;
 
+export const FeedImage = styled(Image)`
+  width: 100%;
+  height: 460px;
+  background: pink;
+`;
+
 export const WeatherCard = styled(View)`
   display: flex;
   flex-direction: row;
@@ -33,7 +39,12 @@ export const WeatherCard = styled(View)`
   align-items: center;
   padding-left: 10px;
   background: #FFFFFF;
-  border-radius: 14px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  shadow-opacity: 0.7;
+  shadow-radius: 10px;
+  shadow-color: rgba(0, 0, 0, 0.04);
+  shadow-offset: 0px 30px;
 `;
 
 export const WeatherImage = styled(Image)`
@@ -59,23 +70,44 @@ export const TitleArea = styled(View)`
 export const Row = styled(View)`
   display: flex;
   flex-direction: row;
-  // justify-content: space-evenly;
-  // align-items: center;
-  // padding: 0 ${width * 75}px;
 `;
 
 export const Column = styled(View)`
   display: flex;
   flex-direction: column;
-  //justify-content: space-between;
-  //padding: 0 10px 0 0;
 `;
-
-
 
 export const Divider = styled(View)`
   width: 319px;
   height: 1.5px;
   background: #eeeeee;
   margin: 5px auto;
+`;
+
+export const FeedTitleRow =  styled(Row)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 18px 16px;
+`;
+
+export const FeedContent = styled(View)`
+  padding: 18px 16px;
+`;
+
+export const WeatherButton = styled(TouchableOpacity)`
+  width: 48px;
+  height: 48px;
+  border-radius : 50px;
+  border-width: 2px;
+  border-color: #ffffff;
+  background: #ffffff;
+  border-style: solid;
+  position: absolute;
+  opacity: 0.7;
+  bottom: 13px;
+  right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

@@ -18,3 +18,11 @@ export interface IMyOutfits {
   bottom?: string;
   score?: null | number;
 }
+
+export interface IMyOutfits {
+  image : string[],
+  weather : [],
+  title : string,
+  content : string,
+  detail : {}
+}

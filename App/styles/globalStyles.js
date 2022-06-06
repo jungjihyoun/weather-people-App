@@ -60,6 +60,10 @@ export const images = {
   camera: require('../assets/camera.png'),
   delete_icon: require('../assets/delete_icon.png'),
   close_icon: require('../assets/close.png'),
+  sorry_icon: require('../assets/sorry.png'),
+  rainbow_cloud: require('../assets/rainbow_cloud.png'),
+  chat_icon: require('../assets/chat_icon.png'),
+  like_icon: require('../assets/like_icon.png'),
 };
 
 export const height = (

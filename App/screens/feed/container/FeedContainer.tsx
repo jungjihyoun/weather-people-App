@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet , View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import TopSection from '../component/TopSection';
 import WeatherInfo from '../component/WeatherInfo'
-import {Container} from '../Feed.Styled';
+import Feeds from '../component/Feeds'
+import {ScrollContainer} from '../Feed.Styled';
 
 type mainScreenProp = StackNavigationProp<any>;
 
@@ -14,20 +15,12 @@ const FeedContainer = () => {
   return (
     <>
       <TopSection />
-      <Container>
+      <ScrollContainer>
         <WeatherInfo/>
-      </Container>
+        <Feeds/>
+      </ScrollContainer>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  slide: {
-    flex: 2,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'pink',
-  },
-});
 
 export default FeedContainer;

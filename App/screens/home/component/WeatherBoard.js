@@ -141,7 +141,7 @@ const WeatherBoard = () => {
             %
           </CustomText>
           <CustomText size="14px" weight={700} color={colors.prPink}>
-            어제보다 5º 높음
+            어제보다 1º 높음
           </CustomText>
         </CommentArea>
 

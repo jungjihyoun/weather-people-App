@@ -3,12 +3,15 @@
 Mobile App 'WeatherPeople' Frontend using ReactNative 
 
 
+
+
+
 ***
 
 Abstract
 ------------
-사람들이 직접 경험한 오늘의 날씨정보를 토대로 옷차림을 공유한다면,
-내가 직접 느낀 날씨를 기록할 수 있다면 어떨까요?
+사람들이 직접 경험한 오늘의 날씨정보를 토대로 옷차림을 공유한다면,   
+내가 직접 느낀 날씨를 기록할 수 있다면 어떨까요?    
 웨더피플은 날씨에 관련된 경험을 공유하고 , 소통하는 서비스 입니다.
 
 이 레포지토리에는 프론트엔드 코드가 담겨있습니다. 
@@ -56,7 +59,7 @@ Composition
 >     - PeoplePickStack.js
 >     - ProfileStack.js
 >     - UploadStack.js
->   +screens
+>   + screens
 >     + auth
 >       + component
 >         - LoginDashBoard.js
@@ -144,8 +147,7 @@ application의 코드가 bundling 됩니다.
 
 
 ## Initial Screen
-<img src="https://user-images.githubusercontent.com/55846598/172408658-84ddb903-dfdc-473f-b227-22f372d1b3c0.png" width="200" height="400" />
-<img src="https://user-images.githubusercontent.com/55846598/172408704-0b8aa772-181a-428b-8963-e8c8d40770a1.png" width="200" height="400" />
+<img src="https://user-images.githubusercontent.com/55846598/172408658-84ddb903-dfdc-473f-b227-22f372d1b3c0.png" width="200" height="400" /><img src="https://user-images.githubusercontent.com/55846598/172408704-0b8aa772-181a-428b-8963-e8c8d40770a1.png" width="200" height="400" />
 
 
 ## Installation    

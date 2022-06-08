@@ -22,101 +22,109 @@ Abstract
 
 Composition
 -----------
-프로젝트의 주요 구성 요소는 다음과 같습니다:      
-> * App
->   + assets
->     - fonts
->     - images
->     - svg
->   + components
->       - AppSwiper.js
->       - InputTitle.js
->       - WeatherModal.js
->       - WeatherSelect.js
->       - WeatherPopup.tsx
->       - WeatherTextArea.js
->       - WeatherTextInput.js
->   + constant
->       - mainRoutes.js
->   + graphql
->     - Record.js
->     - USER.js
->   + hooks
->     - useFetchAllUser.js
->     - useFetchDust.js
->     - useFetchGeo.js
->     - useFetchRecord.js
->     - usePostRecord.js
->     - useShortWeather.js
->   + interfaces
->     - user.ts
->   + navigation
->     - AuthStack.js
->     - BottomTab.js
->     - FeedStack.js
->     - HomeStack.js
->     - MainStack.js
->     - PeoplePickStack.js
->     - ProfileStack.js
->     - UploadStack.js
->   + screens
->     + auth
->       + component
->         - LoginDashBoard.js
->         - index.js
->       + container
->         - LoginContainer.js
->       - LoginScreen.js
->       - SplashScreen.js
->       - auth.styled.js
->     + feed
->       + component
->         - Feed.tsx
->         - Feeds.tsx
->         - TopSection.tsx
->         - WeatherInfo.js
->       + container
->         - FeedContainer.tsx
->       - Feed.styled.js
->       - FeedScreen.js
->     + home
->       + component
->         - HotPost.tsx
->         - OutfitPhotos.tsx
->         - OutfitSwiper.tsx
->         - TopSection.tsx
->         - WeatherBoard.js
->         - WeatherPick.js
->       + container
->         - HomeContainer.tsx
->       - Home.styled.js
->       - HomeScreen.js
->     + peoplePick
->       - peoplePick.js
->     + upload
->       + component
->         - DetailRecordSelect.tsx
->         - DetailRecordText.tsx
->         - DetailRecords.tsx
->         - ImageSlides.tsx
->         - TopSection.js
->         - UploadInputArea.js
->       + container
->         - UploadContainer.tsx
->       - Upload.styled.js
->       - UploadScreen.js
->     + utils
->       - API.js
->       - DATE.js
->       - SIDO.js
->       - fetcher.js
->   + styles
->     - globalStyles.js
->   - App.js
-> * ios 
-> * android 
-> * package.json 
-> * pakage-lock.json
+프로젝트의 주요 구성 요소는 다음과 같습니다:   
+
+```bash
+📦App
+ ┣ 📂assets
+ ┃ ┣ 📂fonts
+ ┃ ┣ 📜.DS_Store
+ ┣ 📂component
+ ┃ ┣ 📜AppSwiper.js
+ ┃ ┣ 📜InputTitle.js
+ ┃ ┣ 📜WeatherModal.js
+ ┃ ┣ 📜WeatherPopup.tsx
+ ┃ ┣ 📜WeatherSelect.js
+ ┃ ┣ 📜WeatherTextArea.js
+ ┃ ┗ 📜WeatherTextInput.js
+ ┣ 📂constant
+ ┃ ┗ 📜mainRoutes.js
+ ┣ 📂graphql
+ ┃ ┣ 📜Record.js
+ ┃ ┗ 📜USER.js
+ ┣ 📂hooks
+ ┃ ┣ 📜useFetchAllUser.js
+ ┃ ┣ 📜useFetchDust.js
+ ┃ ┣ 📜useFetchGeo.js
+ ┃ ┣ 📜useFetchRecord.js
+ ┃ ┣ 📜usePostRecord.js
+ ┃ ┗ 📜useShortWeather.js
+ ┣ 📂interfaces
+ ┃ ┗ 📜user.ts
+ ┣ 📂navigation
+ ┃ ┣ 📜AuthStack.js
+ ┃ ┣ 📜BottomTab.js
+ ┃ ┣ 📜FeedStack.js
+ ┃ ┣ 📜HomeStack.js
+ ┃ ┣ 📜MainStack.js
+ ┃ ┣ 📜PeoplePickStack.js
+ ┃ ┣ 📜ProfileStack.js
+ ┃ ┗ 📜UploadStack.js
+ ┣ 📂screens
+ ┃ ┣ 📂auth
+ ┃ ┃ ┣ 📂component
+ ┃ ┃ ┃ ┣ 📜LoginDashBoard.js
+ ┃ ┃ ┃ ┗ 📜index.js
+ ┃ ┃ ┣ 📂container
+ ┃ ┃ ┃ ┗ 📜LoginContainer.js
+ ┃ ┃ ┣ 📜LoginScreen.js
+ ┃ ┃ ┣ 📜SplashScreen.js
+ ┃ ┃ ┗ 📜auth.styled.js
+ ┃ ┣ 📂error
+ ┃ ┃ ┗ 📜ErrorScreen.js
+ ┃ ┣ 📂feed
+ ┃ ┃ ┣ 📂component
+ ┃ ┃ ┃ ┣ 📜Feed.tsx
+ ┃ ┃ ┃ ┣ 📜Feeds.tsx
+ ┃ ┃ ┃ ┣ 📜TopSection.js
+ ┃ ┃ ┃ ┗ 📜WeatherInfo.jsx
+ ┃ ┃ ┣ 📂container
+ ┃ ┃ ┃ ┗ 📜FeedContainer.tsx
+ ┃ ┃ ┣ 📜Feed.Styled.js
+ ┃ ┃ ┗ 📜FeedScreen.js
+ ┃ ┣ 📂home
+ ┃ ┃ ┣ 📂component
+ ┃ ┃ ┃ ┣ 📜HotPost.js
+ ┃ ┃ ┃ ┣ 📜OutfitPhotos.js
+ ┃ ┃ ┃ ┣ 📜OutfitSwiper.js
+ ┃ ┃ ┃ ┣ 📜TopSection.js
+ ┃ ┃ ┃ ┣ 📜WeatherBoard.js
+ ┃ ┃ ┃ ┗ 📜WeatherPick.js
+ ┃ ┃ ┣ 📂container
+ ┃ ┃ ┃ ┗ 📜HomeContainer.js
+ ┃ ┃ ┣ 📜HomeScreen.js
+ ┃ ┃ ┗ 📜home.styled.js
+ ┃ ┣ 📂peoplePick
+ ┃ ┃ ┗ 📜PeoplePickScreen.js
+ ┃ ┣ 📂profile
+ ┃ ┃ ┗ 📜ProfileScreen.js
+ ┃ ┗ 📂upload
+ ┃ ┃ ┣ 📂component
+ ┃ ┃ ┃ ┣ 📜DetailRecordSelect.js
+ ┃ ┃ ┃ ┣ 📜DetailRecordText.js
+ ┃ ┃ ┃ ┣ 📜DetailRecords.js
+ ┃ ┃ ┃ ┣ 📜ImageSlides.js
+ ┃ ┃ ┃ ┣ 📜TopSection.js
+ ┃ ┃ ┃ ┗ 📜UploadInputArea.tsx
+ ┃ ┃ ┣ 📂container
+ ┃ ┃ ┃ ┗ 📜UploadContainer.tsx
+ ┃ ┃ ┣ 📜Upload.Styled.js
+ ┃ ┃ ┗ 📜UploadScreen.js
+ ┣ 📂store
+ ┃ ┗ 📜user.js
+ ┣ 📂styles
+ ┃ ┗ 📜globalStyles.js
+ ┣ 📂type
+ ┃ ┗ 📜upload.ts
+ ┣ 📂utils
+ ┃ ┣ 📜API.js
+ ┃ ┣ 📜DATE.js
+ ┃ ┣ 📜SIDO.js
+ ┃ ┗ 📜fetcher.js
+ ┣ 📜.DS_Store
+ ┗ 📜App.js
+
+```
 
 ### Description
 #### android

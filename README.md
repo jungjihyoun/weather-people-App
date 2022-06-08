@@ -105,11 +105,11 @@ Composition
 >         - UploadContainer.tsx
 >       - Upload.styled.js
 >       - UploadScreen.js
->   +utils
->     - API.js
->     - DATE.js
->     - SIDO.js
->     - fetcher.js
+>     + utils
+>       - API.js
+>       - DATE.js
+>       - SIDO.js
+>       - fetcher.js
 >   + styles
 >     - globalStyles.js
 >   - App.js
@@ -126,7 +126,7 @@ ios 폴더에는 ios project 파일이 담겨있습니다. ios app을 build 할 
 #### App.js
 application의 코드가 bundling 됩니다.
 #### utils
-주요 날씨 정보 및 카카오 api 통신을 위한 주소가 API.js에 정리되어 있습니다. Base url 은 보안을 위해 환경 변수로 관리합니다.ㄴ
+주요 날씨 정보 및 카카오 api 통신을 위한 주소가 API.js에 정리되어 있습니다. Base url 은 보안을 위해 환경 변수로 관리합니다.
 날짜 포매팅을 위한 함수를 모듈화 하고 기상청 통신을 위한 주소 모듈이 정리되어 있습니다. fetcher.js에는 graphqlFetcher 및 fetcherWithToken
 등 백엔드 통신을 위한 인스턴스를 관리합니다.
 
